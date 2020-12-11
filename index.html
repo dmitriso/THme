@@ -1,17 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <!-- Foundation CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+    integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
 
 
-  <title>Document</title>
+  <title>THme</title>
 </head>
-<body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="./assets/scripts/script.js"></script>
 
+<body>
+  <ul class="menu">
+    <li class="">
+      <h3>One</h3>
+    </li>
+  </ul>
+  <!--AGE VERFICATION-->
+  <div class="card" style="width: 300px;">
+    <div class="card-divider">
+      Age Verfication
+    </div>
+    <div class="card-section">
+      <h4>Are you 21</h4>
+      <p>It has an easy to override visual style, and is appropriately subdued.</p>
+    </div>
+  </div>
+  <!--WARNING-->
+  <div class="card" style="width: 300px;">
+    <div class="card-divider">
+      Warning
+    </div>
+    <div class="card-section">
+      <h4>This is a card.</h4>
+      <p>It has an easy to override visual style, and is appropriately subdued.</p>
+    </div>
+  </div>
+  <!--SYMPTOMS-->
+  <div class="card" style="width: 500px;">
+    <div class="card-divider">
+      Pick Symptoms
+    </div>
+    <div class="card-section">
+      <h4>This is a card.</h4>
+      <fieldset class="large-7 cell">
+        <legend>Check these out</legend>
+        <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
+        <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <br>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <br>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+      </fieldset>
+      <button type="button" class="success button">Save</button>
+    </div>
+  </div>
+  <!--FLAVORS-->
+  <div class="card" style="width: 725px;">
+    <div class="card-divider">
+      Pick flavors
+    </div>
+    <div class="card-section">
+      <fieldset class="large-7 cell">
+        <legend>Earthy</legend>
+        <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
+        <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <br>
+        <legend>Fruity</legend>
+        <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
+        <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <br>
+        <legend>Other</legend>
+        <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
+        <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
+      </fieldset>
+      <button type="button" class="success button">Save</button>
+    </div>
+  </div>
+  <!--USER OUTPUT-->
+  <div class="card" style="width: 900px;">
+    <div class="card-divider">
+      Your Recommendations
+    </div>
+    <!--STRAIN OUTPUT-->
+    <div class="card-section">
+      <div class="strain-output">
+        <div class="card effects" style="width: 150px;">
+          <div class="card-divider">
+            Strain Name
+          </div>
+          <div class="card-section">
+          </div>
+        </div>
+      </div>
+      <!--FLAVOR-EFFECTS SECTION-->
+      <div class="col effects-flavor-col">
+        <!--FLAVOR/HERBAL EFFECTS-->
+        <div class="row">
+          <div class="card effects" style="width: 150px;">
+            <div class="card-divider">
+              Flavors Profiles
+            </div>
+            <div class="card-section">
+            </div>
+          </div>
+          <div class="card" style="width: 150px;">
+            <div class="card-divider">
+              Herbal Remedies
+            </div>
+            <div class="card-section">
+            </div>
+          </div>
+        </div>
+        <!--POSITIVE/NEGATIVE EFFECTS-->
+        <div class="row">
+          <div class="card effects" style="width: 150px;">
+            <div class="card-divider">
+              Positive Effects
+            </div>
+            <div class="card-section">
+            </div>
+          </div>
+          <div class="card" style="width: 150px;">
+            <div class="card-divider">
+              Negative Effects
+            </div>
+            <div class="card-section">
+            </div>
+          </div>
+        </div>
+        <!--END OF EFFECTS SECTION-->
+      </div>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="./assets/scripts/script.js"></script>
+      <!-- Foundation JavaScript -->
+      <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+        integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
 </body>
+
 </html>
