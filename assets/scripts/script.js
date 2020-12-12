@@ -81,7 +81,7 @@ $(document).ready(function () {
         //variable that corresponds with the strain ID of the clicked in strain name. This is used to make the next API calls.
         let $strainID = $(this).attr('id');
 
-        //API call to ge the flavors of the chosen strain
+        //API call to get the flavors of the chosen strain
         $.ajax({
           url: `https://strainapi.evanbusse.com/${key}/strains/data/flavors/${$strainID}`,
           method: "GET",
@@ -89,6 +89,21 @@ $(document).ready(function () {
           //for loop that goes through all of the provided flavor profiles of the chosen strain and writes the to the flavor profiles card
           for (let i = 0; i < flavor.length; i++) {
             $('<li>').attr("id", `flavor-${i + 1}`).text(flavor[i]).appendTo('#flavors');
+          }
+        });
+
+        //API call to get the posi and neg effects of the chosen strain
+        $.ajax({
+          url: `https://strainapi.evanbusse.com/${key}/strains/data/effects/${$strainID}`,
+          method: "GET",
+        }).then(function(effects){
+          //for loop that goes through all of the provided positive effects of the chosen strain and writes the to the positive effects profiles card
+          for (let i = 0; i < effects.positive.length; i++) {
+            $('<li>').attr("id", `posi-${i + 1}`).text(effects.positive[i]).appendTo('#posi-effects');
+          }
+          //for loop that goes through all of the provided negative effects of the chosen strain and writes the to the negative effects profiles card
+          for (let i = 0; i < effects.negative.length; i++) {
+            $('<li>').attr("id", `neg-${i + 1}`).text(effects.negative[i]).appendTo('#neg-effects');
           }
         });
 
@@ -173,6 +188,8 @@ $(document).ready(function () {
 
 
 
+//*** Old Code. Saving just in case ***//
+//-------------------------------------//
 
 // var userEffect =$("#checkbox1").val();
 //   var effectURL = `https://strainapi.evanbusse.com/zBGPK18/strains/search/effect/${userEffect}`;
