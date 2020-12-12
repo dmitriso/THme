@@ -77,6 +77,8 @@ $(document).ready(function () {
         e.preventDefault();
         //Clear out any data in the flavors card and description div
         $('#flavors').empty();
+        $('#posi-effects').empty();
+        $('#neg-effects').empty();
         $('#strain-descrip').empty();
         //variable that corresponds with the strain ID of the clicked in strain name. This is used to make the next API calls.
         let $strainID = $(this).attr('id');
