@@ -44,7 +44,10 @@ $(document).ready(function () {
   //   })
   // }
   // getEffects();
-
+  var aliments = ['depression', 'stress', 'inflammation', 'lack of appetite', 'fatigue', 'glaucoma', 'headache', 'insomnia', 'pain', 'nausea']
+  for (let index = 0; index < aliments.length; index++) {
+      $('<option>').text(aliments[index]).attr('id', aliments[index]).appendTo('#symptoms')
+    };
   //Submit button event listener to kick off API calls
   $("#submitBtn").on("click", function(){
     
@@ -154,7 +157,7 @@ $(document).ready(function () {
       {name:'nausea', id: 229},
       // {name:'seizures', id: 260},
     ];
-    
+   
    const cramps = ['Chasteberry', 'Raspberry Leaf', 'Chamomile', 'Fennel', 'Wild Yam'];
 
     //Personal remedies API call

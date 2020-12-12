@@ -26,34 +26,33 @@
       <img class='main-logo' src="assets/images/THme.png">
     </li>
   </ul>
-  <!--AGE VERFICATION-->
-  <div class="callout" data-closable>
+   <!--AGE VERFICATION-->
+   <div class="callout age-ver" data-closable>
     <button class="close-button" aria-label="Close alert" type="button" data-close>
       <span aria-hidden="true">&times;</span>
     </button>
       <div class="card-divider">
         Age Verfication
       </div>
-      <div class="card-section">
+      <div class="card-section ">
         <label>Day
-          <select>
-            <option id="days-verifiction" value="days-verifiction">01</option>
+          <select id="days">
+            <option id="days-verifiction" value="days-verifiction"></option>
           </select>
         </label>
         <label>Month
-          <select>
-            <option id="months-verifiction" value="months-verifcation">January</option>
+          <select id="months">
+            <option id="months-verifiction" value="months-verifcation"></option>
           </select>
         </label>
         <label>Year
-          <select>
-            <option id="year-verifiction" value="year-verifcation">1980</option>
+          <select id="years">
+            <option id="years-ver"></option>
           </select>
         </label>
+        <input type="submit" class="button" value="Submit" id="agebtn">
       </div>
-    </div>
   </div>
-  
   <!--WARNING-->
   <div class="callout" data-closable>
     <button class="close-button" aria-label="Close alert" type="button" data-close>
@@ -72,59 +71,13 @@
       Pick Symptoms
     </div>
     <div class="card-section">
-      <h4>This is a card.</h4>
-      <fieldset class="large-7 cell">
-        <legend>Check these out</legend>
-        <input id="checkbox1" type="text"><label for="checkbox1">Checkbox 1</label>
-        <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox4" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <br>
-        <input id="checkbox5" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox6" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox7" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox8" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <br>
-        <input id="checkbox9" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox10" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox11" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox12" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-      </fieldset>
+      <h4>Please Choose a Symptom</h4>
+      <label>Symptoms
+        <select id="symptoms">
+          <option id="symptoms-id" value="symptoms-value"></option>
+        </select>
+      </label>
       <button type="button" class="success button" id="submitBtn">Save</button>
-    </div>
-  </div>
-  <!--FLAVORS-->
-  <div class="card" style="width: 725px;">
-    <div class="card-divider">
-      Pick flavors
-    </div>
-    <div class="card-section">
-      <fieldset class="large-7 cell">
-        <legend>Earthy</legend>
-        <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
-        <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <br>
-        <legend>Fruity</legend>
-        <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
-        <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <br>
-        <legend>Other</legend>
-        <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
-        <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-        <input id="checkbox3" type="checkbox"><label for="checkbox3">Checkbox 3</label>
-      </fieldset>
-      <button type="button" class="success button">Save</button>
     </div>
   </div>
   <!--USER OUTPUT-->
@@ -133,7 +86,6 @@
       Your Recommendations
     </div>
     <!--STRAIN OUTPUT-->
-  
     <div>
       <div class="strain-output">
         <div class="card effects card-properties">
@@ -146,8 +98,8 @@
             <ul id="strain-list"></ul> <!-- Added ul and id - nk -->
           </div>
           </div>
-          <div class="card-section">
-            <p id="strain-descrip">This is where descriptions go</p><!-- moved id down form parent div -nk-->
+          <div>
+            <p id="strain-descrip"></p><!-- moved id down form parent div -nk-->
           </div>
         </div>
       </div>
@@ -197,6 +149,7 @@
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="./assets/scripts/script.js"></script>
+      <script src="./assets/scripts/agescript.js"></script>
       <!-- Foundation JavaScript -->
       <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
         integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
