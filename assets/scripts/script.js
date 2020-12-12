@@ -18,7 +18,7 @@ $(document).ready(function () {
       let randoPick = Math.floor(Math.random() * (effect.length - 1));
       //push the strain IDs to the strainRecID storage Array
       strainRecID.push(effect[randoPick])
-    }// console.log(strainRecID)
+    }console.log(strainRecID)
 
     
     //for loop to create a li element for strainRecId's length and write the name of the strain in each li element. Element id corresponds with strain ID#
@@ -79,11 +79,17 @@ $(document).ready(function () {
   **************/
 
 
-  prProbIDs = [18, 21, 58, 60, 144, 157, 165, 190, 224, 229];
+  // prProbIDs = [
+    // {18,} 
+    // {21,} 
+    // {58,} 
+    // {60,} 
+    // {144,} 
+    // {157,} 165, 190, 224, 229];
 
   //Personal remedies API call
   $.ajax({
-    url: `https://nutridigm-api-dev.azurewebsites.net/api/v1/nutridigm/suggest?subscriptionId=1&problemId=${prProbIDs[7]}&fg2=k2`,
+    url: `https://nutridigm-api-dev.azurewebsites.net/api/v1/nutridigm/suggest?subscriptionId=1&problemId=190&fg2=k2`,
     method: "GET",
   }).then(function (herbs) {
     // console.log(herbs)
