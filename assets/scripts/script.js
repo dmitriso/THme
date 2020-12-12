@@ -2,22 +2,17 @@
 $(document).ready(function () {
   // console.log( "Here is our Javascript!" );
   var allEffects = [];
-  var allFlavors = [];
-  var allStrains = [];
-  var strainRec = [];
   var key = "zBGPK18";
-
-
   // This function grabs all effects from the strain API
   function getEffects() {
-    var effectsURL = `https://strainapi.evanbusse.com/${key}/strains/search/effect/EFFECT`;
+    var effectsURL = `https://strainapi.evanbusse.com/${key}/searchdata/effects`;
     $.ajax({
       url: effectsURL,
       method: "Get"
     }).then(function (effects) {
       allEffects.push(effects);
-      // displays all effects for navigationS
-      console.log(allEffects);
+      // sets all effects for  user selection
+      // console.log(allEffects);
       // depression
       $("#checkbox1").val(allEffects[0][5].effect);
       // insomnia
@@ -44,76 +39,66 @@ $(document).ready(function () {
       $("#checkbox12").val(allEffects[0][31].effect);
       // muscle cramps
       // $("#checkbox13").val(allEffects[0][].effect);
-
-
-      
     })
   }
   getEffects();
+
+$("#submitBtn").on("click", function(){
+  var userEffect =$("#checkbox1").val();
+  var effectURL = `https://strainapi.evanbusse.com/zBGPK18/strains/search/effect/${userEffect}`;
+  $.ajax({
+    url: effectURL,
+    method: "Get"
+  }).then(function (effectRec) {
+    console.log(effectRec);
+    var effRec =  [];
+    // This generates 5 random strain names from the effect reccomendation list
+    for (var i = 0; i <5; i++) {
+    var userEffectRec = Math.floor(Math.random() * (effectRec.length - 1));
+    // console.log(userEffectRec);
+    effRec.push(effectRec[userEffectRec].name);
+    console.log(effRec);
+    }
+  })
+
 })
-  // This function grabs all flavors from the strain API
-//   function getUserFlavors() {
-//     var flavorURL = `https://strainapi.evanbusse.com/${key}/searchdata/flavors`;
-//     $.ajax({
-//       url: flavorURL,
-//       method: "Get"
-//     }).then(function (flavors) {
-//       allFlavors.push(flavors);
-//       // displays all flavor choices for navigation
-//       console.log(allFlavors);
-//     });
-//   }
-//   getUserFlavors();
-// })
-  // This function grabs all strains from the strain API
-  // function getStrains() {
-  //   var strainURL = `https://strainapi.evanbusse.com/${key}/strains/search/all`;
-  //   $.ajax({
-  //     url: strainURL,
-  //     method: "Get"
-  //   }).then(function (strains) {
-  //     allStrains.push(strains);
-  //     // displays all strains in console
-  //     console.log(allStrains);
-  //     // console.log(strains[0][1].id);
-  //   });
-  // }
-  // getStrains();
-
-
-
-// =======
-// $( document ).ready(function() {
-//   console.log( "Here is our Javascript!" );
-//   //*** Personal Remedies API ***//
-//   //*** code by Nate King ***//
-//   /************
-//   ID#s - ailments
-//   ---------------
-//   18 - depression
-//   21 - stress
-//   32 - cramps - no data from personal remedies, not in prProbIDs array
-//   58 - inflammation
-//   60 - lack of appetite
-//   144 - fatigue
-//   157 - glaucoma
-//   165 - headache
-//   190 - insomnia
-//   224 - pain
-//   229 - nausea
-//   260 - seizures - no data from personal remedies, not in prProbIDs array
-//   **************/
-
-
-//  prProbIDs = [18, 21, 58, 60, 144, 157, 165, 190, 224, 229];  
+  // this function has an ajax call that pulls strain info based off of the strain id
+  $("li").on("click", function(){
+    function strainInfo() {
+      var strainId =$(this);
+      var strainDesURL = `https://strainapi.evanbusse.com/${key}/strains/data/desc/${strainId}`;
+      var strainEffURL = `https://strainapi.evanbusse.com/${key}/strains/data/effects/${strainId}`;
+      var strainFlaURL = `https://strainapi.evanbusse.com/${key}/strains/data/flavors/${strainId}`;
   
-//  //PR API url
-//  let prURL = `https://nutridigm-api-dev.azurewebsites.net/api/v1/nutridigm/suggest?subscriptionId=1&problemId=${prProbIDs[0]}&fg2=k2`
+      $.ajax({
+        url: strainDesURL,
+        method: "Get"
+      }).then(function (strainDes) {
+        console.log(strainDes);
+  
+      })
+  
+      $.ajax({
+        url: strainEffURL,
+        method: "Get"
+      }).then(function (strainEff) {
+        console.log(strainEff);
+  
+      })
+  
+      $.ajax({
+        url: strainFlaURL,
+        method: "Get"
+      }).then(function (strainFl) {
+        console.log(strainFl);
+  
+      })
+    }
+    strainInfo();
+  })
 
-//  $.ajax({
-//    url: prURL,
-//    method: "GET",
-//  }).then(function(herbs){
-//    console.log(herbs)
-//  })
-// >>>>>>> cde8fafb7d0f10b782f1c2329c33fbaf2c777c01
+
+
+
+});
+
