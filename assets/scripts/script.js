@@ -97,10 +97,6 @@ $("#submitBtn").on("click", function(){
     }
     strainInfo();
   })
-
-
-
-
 });
 
 
