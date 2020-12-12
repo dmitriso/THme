@@ -25,23 +25,43 @@
     </li>
   </ul>
   <!--AGE VERFICATION-->
-  <div class="card" style="width: 300px;">
-    <div class="card-divider">
-      Age Verfication
-    </div>
-    <div class="card-section">
-      <h4>Are you 21</h4>
-      <p>It has an easy to override visual style, and is appropriately subdued.</p>
+  <div class="callout" data-closable>
+    <button class="close-button" aria-label="Close alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+      <div class="card-divider">
+        Age Verfication
+      </div>
+      <div class="card-section">
+        <label>Day
+          <select>
+            <option id="days-verifiction" value="days-verifiction">01</option>
+          </select>
+        </label>
+        <label>Month
+          <select>
+            <option id="months-verifiction" value="months-verifcation">January</option>
+          </select>
+        </label>
+        <label>Year
+          <select>
+            <option id="year-verifiction" value="year-verifcation">1980</option>
+          </select>
+        </label>
+      </div>
     </div>
   </div>
+  
   <!--WARNING-->
-  <div class="card" style="width: 300px;">
+  <div class="callout" data-closable>
+    <button class="close-button" aria-label="Close alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
     <div class="card-divider">
       Warning
     </div>
     <div class="card-section">
-      <h4>This is a card.</h4>
-      <p>It has an easy to override visual style, and is appropriately subdued.</p>
+      <p>Warning Text Goes Here</p>
     </div>
   </div>
   <!--SYMPTOMS-->
@@ -111,22 +131,30 @@
       Your Recommendations
     </div>
     <!--STRAIN OUTPUT-->
-    <div class="card-section">
+  
+    <div>
       <div class="strain-output">
-        <div class="card effects" style="width: 150px;">
+        <div class="card effects card-properties">
           <div class="card-divider">
             Strain Name
           </div>
+        <div class="card-section list-descrip">
+          <div id="output-section" class="card-section">
           <div id="output" class="card-section">
             <ul id="strain-list"></ul> <!-- Added ul and id - nk -->
           </div>
+          </div>
+          <div id="strain-descrip" class="card-section">
+            <p>This is where descriptions go</p>
+          </div>
         </div>
+      </div>
       </div>
       <!--FLAVOR-EFFECTS SECTION-->
       <div class="col effects-flavor-col">
         <!--FLAVOR/HERBAL EFFECTS-->
         <div class="row">
-          <div class="card effects" style="width: 150px;">
+          <div class="card effects card-properties">
             <div class="card-divider">
               Flavors Profiles
             </div>
@@ -134,7 +162,7 @@
               <ul id="flavors"></ul> <!-- Added ul and id - nk -->
             </div>
           </div>
-          <div class="card" style="width: 150px;">
+          <div class="card card-properties">
             <div class="card-divider">
               Herbal Remedies
             </div>
@@ -145,14 +173,14 @@
         </div>
         <!--POSITIVE/NEGATIVE EFFECTS-->
         <div class="row">
-          <div class="card effects" style="width: 150px;">
+          <div class="card effects card-properties">
             <div class="card-divider">
               Positive Effects
             </div>
             <div class="card-section">
             </div>
           </div>
-          <div class="card" style="width: 150px;">
+          <div class="card card-properties">
             <div class="card-divider">
               Negative Effects
             </div>
