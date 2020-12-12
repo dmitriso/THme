@@ -31,7 +31,7 @@ $(document).ready(function () {
       e.preventDefault();
       //Clear out any data in the flavors card and description div
       $('#flavors').empty();
-      $('#desc').empty();
+      $('#strain-descrip').empty();
       //variable that corresponds with the strain ID of the clicked in strain name. This is used to make the next API calls.
       let $strainID = $(this).attr('id');
 
@@ -52,7 +52,7 @@ $(document).ready(function () {
         method: "GET",
       }).then(function(desc){
         //Writes the description of the strain to the description div
-        $('#desc').text(desc.desc)
+        $('#strain-descrip').text(desc.desc)
       });
     });
   });
