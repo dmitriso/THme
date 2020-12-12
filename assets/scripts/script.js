@@ -79,10 +79,10 @@ $(document).ready(function () {
   **************/
 
 
-  prProbIDs = [
+  prProbID = [
     {name:'depression', id: 18},
     {name:'stress', id: 21},
-    {name:'cramps', id: 32},
+    // {name:'cramps', id: 32},
     {name:'inflammation', id: 58},
     {name:'lack of appetite', id: 60},
     {name:'fatigue', id: 144},
@@ -91,13 +91,17 @@ $(document).ready(function () {
     {name:'insomnia', id: 190},
     {name:'pain', id: 224},
     {name:'nausea', id: 229},
-    {name:'seizures', id: 260},
+    // {name:'seizures', id: 260},
   ]
    
 
   //Personal remedies API call
+
+//if (ailment selection === cramps){
+
+//}
   $.ajax({
-    url: `https://nutridigm-api-dev.azurewebsites.net/api/v1/nutridigm/suggest?subscriptionId=1&problemId=190&fg2=k2`,
+    url: `https://nutridigm-api-dev.azurewebsites.net/api/v1/nutridigm/suggest?subscriptionId=1&problemId=190&fg2=${prProbID.id}`,
     method: "GET",
   }).then(function (herbs) {
     // console.log(herbs)
@@ -108,3 +112,5 @@ $(document).ready(function () {
   });
 
 });
+
+
