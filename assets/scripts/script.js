@@ -180,10 +180,6 @@ $(document).ready(function () {
 });//End of submit button listener
   
 
-
- 
-  
-
 });
 
 
