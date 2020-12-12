@@ -79,13 +79,21 @@ $(document).ready(function () {
   **************/
 
 
-  // prProbIDs = [
-    // {18,} 
-    // {21,} 
-    // {58,} 
-    // {60,} 
-    // {144,} 
-    // {157,} 165, 190, 224, 229];
+  prProbIDs = [
+    {name:'depression', id: 18},
+    {name:'stress', id: 21},
+    {name:'cramps', id: 32},
+    {name:'inflammation', id: 58},
+    {name:'lack of appetite', id: 60},
+    {name:'fatigue', id: 144},
+    {name:'glaucoma', id: 157},
+    {name:'headache', id: 165},
+    {name:'insomnia', id: 190},
+    {name:'pain', id: 224},
+    {name:'nausea', id: 229},
+    {name:'seizures', id: 260},
+  ]
+   
 
   //Personal remedies API call
   $.ajax({
