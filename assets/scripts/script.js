@@ -5,7 +5,7 @@ $(document).ready(function () {
   const key = "zBGPK18"; //Dmitris key. Nates is WDnZQMY
 
   //Ailment selection dropdown
-  var aliments = ['Depression', 'Stress', 'Cramps', 'Inflammation', 'Lack of Appetite', 'Fatigue', 'Glaucoma', 'Headache', 'Insomnia', 'Pain', 'Nausea', 'Seizures']
+  var aliments = ['Cramps', 'Depression', 'Fatigue', 'Glaucoma', 'Headache',  'Inflammation', 'Insomnia', 'Lack of Appetite', 'Nausea', 'Pain', 'Seizures', 'Stress']
   //Loop to add each ailment to the dropdown
   for (let index = 0; index < aliments.length; index++) {
       $('<option>').text(aliments[index]).attr('id', aliments[index]).appendTo('#symptoms')
@@ -238,3 +238,4 @@ $(document).ready(function () {
 //   }
 //   strainInfo();
 // })
+
