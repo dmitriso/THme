@@ -7,7 +7,7 @@ var strainHistory = [];
   // var allEffects = [];
   //Strain API keys
   const key = "zBGPK18"; //Dmitris key. Nates is WDnZQMY
-  // // This function grabs all effects from the strain API
+  // // This fuction grabs all effects from the strain API
   // function getEffects() {
   //   var effectsURL = `https://strainapi.evanbusse.com/${key}/searchdata/effects`;
   //   $.ajax({
