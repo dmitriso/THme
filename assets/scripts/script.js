@@ -1,7 +1,18 @@
 $(document).ready(function () {
-var strainHistory = [];
-  // localStorage.clear();
+  
+  // Local Storage by Dmitri Kent So
+  // this retrieves the stored list of strain ids
+  var strainHistory = [];
+  var storedStrains = JSON.parse(localStorage.getItem("storedStrains"))
+  console.log(storedStrains);
+  // Global variable to store strains that a user clicks on
+  if (storedStrains === null) {
+  } else {
+    strainHistory = storedStrains;
+    console.log(strainHistory);
+  }
 
+  // localStorage.clear();
   //Strain API keys
   const key = "zBGPK18"; //Dmitris key. Nates is WDnZQMY
 
@@ -11,6 +22,46 @@ var strainHistory = [];
   for (let index = 0; index < aliments.length; index++) {
       $('<option>').text(aliments[index]).attr('id', aliments[index]).appendTo('#symptoms')
     };
+
+  //Function that calls Strain API and adds the returned data to the DOM
+  const strainDetails = ($strainID) => {
+    //Clear out any data in the flavors card and description div
+    $('#strain-descrip, #flavors, #posi-effects, #neg-effects').empty();
+    //API call to get the flavors of the chosen strain
+    $.ajax({
+      url: `https://strainapi.evanbusse.com/${key}/strains/data/flavors/${$strainID}`,
+      method: "GET",
+    }).then(function (flavor) {
+      //for loop that goes through all of the provided flavor profiles of the chosen strain and writes the to the flavor profiles card
+      for (let i = 0; i < flavor.length; i++) {
+        $('<li>').attr("id", `flavor-${i + 1}`).text(flavor[i]).appendTo('#flavors');
+      }
+    });
+
+    //API call to get the posi and neg effects of the chosen strain
+    $.ajax({
+      url: `https://strainapi.evanbusse.com/${key}/strains/data/effects/${$strainID}`,
+      method: "GET",
+    }).then(function (effects) {
+      //for loop that goes through all of the provided positive effects of the chosen strain and writes the to the positive effects profiles card
+      for (let i = 0; i < effects.positive.length; i++) {
+        $('<li>').attr("id", `posi-${i + 1}`).text(effects.positive[i]).appendTo('#posi-effects');
+      }
+      //for loop that goes through all of the provided negative effects of the chosen strain and writes the to the negative effects profiles card
+      for (let i = 0; i < effects.negative.length; i++) {
+        $('<li>').attr("id", `neg-${i + 1}`).text(effects.negative[i]).appendTo('#neg-effects');
+      }
+    });
+
+    //Strain API call to get the clicked on strains description
+    $.ajax({
+      url: `https://strainapi.evanbusse.com/${key}/strains/data/desc/${$strainID}`,
+      method: "GET",
+    }).then(function (desc) {
+      //Writes the description of the strain to the description div
+      $('#strain-descrip').text(desc.desc)
+    });
+  }// end of strainDetails()
 
   //Submit button event listener to kick off API calls
   $('#submitBtn').on('click', function(){
@@ -139,102 +190,68 @@ var strainHistory = [];
           }
         }
       }//End of Personal Remedies API call
-
-      //Function that calls Strain API and adds the returned data to the DOM
-      const strainDetails = ($strainID) => {
-        //API call to get the flavors of the chosen strain
-        $.ajax({
-          url: `https://strainapi.evanbusse.com/${key}/strains/data/flavors/${$strainID}`,
-          method: "GET",
-        }).then(function (flavor) {
-          //for loop that goes through all of the provided flavor profiles of the chosen strain and writes the to the flavor profiles card
-          for (let i = 0; i < flavor.length; i++) {
-            $('<li>').attr("id", `flavor-${i + 1}`).text(flavor[i]).appendTo('#flavors');
-          }
-        });
-
-        //API call to get the posi and neg effects of the chosen strain
-        $.ajax({
-          url: `https://strainapi.evanbusse.com/${key}/strains/data/effects/${$strainID}`,
-          method: "GET",
-        }).then(function (effects) {
-          //for loop that goes through all of the provided positive effects of the chosen strain and writes the to the positive effects profiles card
-          for (let i = 0; i < effects.positive.length; i++) {
-            $('<li>').attr("id", `posi-${i + 1}`).text(effects.positive[i]).appendTo('#posi-effects');
-          }
-          //for loop that goes through all of the provided negative effects of the chosen strain and writes the to the negative effects profiles card
-          for (let i = 0; i < effects.negative.length; i++) {
-            $('<li>').attr("id", `neg-${i + 1}`).text(effects.negative[i]).appendTo('#neg-effects');
-          }
-        });
-
-        //Strain API call to get the clicked on strains description
-        $.ajax({
-          url: `https://strainapi.evanbusse.com/${key}/strains/data/desc/${$strainID}`,
-          method: "GET",
-        }).then(function (desc) {
-          //Writes the description of the strain to the description div
-          $('#strain-descrip').text(desc.desc)
-        });
-      }// end of strainDetails()
-
-
-        
+  
       //On click listener for the strain names in the strain name list
       $('li').on('click', function (e) {
         e.preventDefault();
-
-
-        //Clear out any data in the flavors card and description div
-        $('#strain-descrip, #flavors, #posi-effects, #neg-effects').empty();
-        
         //variable that corresponds with the strain ID of the clicked in strain name. This is used to make the next API calls.
         let $strainID = $(this).attr('id');
 
         strainDetails($strainID);
+
+
         // Local Storage by Dmitri Kent So
         // this will set an array of user clicked strain ids into local storage
-        var $strainName = $(this).text();
+        var $strainName = {name: $(this).text(), id: $strainID};
         strainHistory.push($strainName);
         localStorage.setItem("storedStrains", JSON.stringify(strainHistory));
         console.log(strainHistory);
-        
+
       });//End of event listener for strain details
+
+      // Add stored strains to a dropdown for user
+
     });//End of initial Strain API call
   });//End of submit button listener
 
-  
+  for (let i = 0; i < strainHistory.length; i++) {
+    $('<option>').attr('id', strainHistory[i].id).text(strainHistory[i].name).appendTo('#saved-strains')
+  };
 
- // Local Storage by Dmitri Kent So
-  // this retrieves the stored list of strain ids
-  var strainHistory = [];
-  var storedStrains = JSON.parse(localStorage.getItem("storedStrains"))
-  console.log(storedStrains);
-  // Global variable to store strains that a user clicks on
-  if (storedStrains === null) {
-  } else {
-    strainHistory = storedStrains;
-    console.log(strainHistory);
-  }
+  $('#info-btn').on('click', function(e) {
+    e.preventDefault;
+    let $strainID = $('#saved-strains option:selected').attr('id');
+    strainDetails($strainID);
 
-  // Local storage generating previous strain names as buttons DS
-  for (var i = 0; i < 10; i++) {
-    console.log("this worked");
-    $("#strain-history").prepend($("<button>").addClass("savedStrain").text(strainHistory[i]));
-    
-  }
-
+  })
   // Clear button to empty sibling ("#strain-history") of text
   $('#clear-btn').click(() => {
     localStorage.clear();
-    $('#strain-history').empty();
+    $('#saved-strains').empty();
   });
 
-  // Event listener that uses searched strain id to display data
-  $(".savedStrain").on("click", function () {
 
+  // // Add stored strains to a dropdown for user
+  // for (let i = 0; i < strainHistory.length; i++) {
+  //   $('<option>').attr('id', i).text(strainHistory[i]).appendTo('#saved-strains')
+  // };
 
-  })
+  // // Clear button to empty sibling ("#strain-history") of text
+  // $('#clear-btn').click(() => {
+  //   localStorage.clear();
+  //   $('#saved-strains').empty();
+  // });
+
+  // $('option').on("click", function (e) {
+  //   e.preventDefault;
+
+  // })
+
+  // // Event listener that uses searched strain id to display data
+  // $('option').on("click", function (e) {
+  //   e.preventDefault;
+
+  // })
   // End of strain history button event DS
 
 });
