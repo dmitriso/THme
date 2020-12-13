@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  
+
   //Strain API keys
   const key = "zBGPK18"; //Dmitris key. Nates is WDnZQMY
 
@@ -134,7 +134,8 @@ $(document).ready(function () {
     ];
    
     //Array with ailment remedies that the PR API returns as null
-    //List if herbal remedies for cramps found on https://herbalcommittea.com/
+    //List if herbal remedies for cramps found on https://herbalcommittea.com/blog/5%20Herbs%20for%20Menstrual%20Cramps%20&%20Period%20Symptoms
+    //List of herbal remedies for muscle spasms found on https://garrowwellnesscenter.com/top-5-best-natural-muscle-relaxers/
     const noPrProb = [
       {name: 'cramps', remedies: ['Chasteberry', 'Raspberry Leaf', 'Chamomile', 'Fennel', 'Wild Yam'] },
       {name: 'muscle%20spasms', remedies: ['Magnesium', 'Lavender', 'Rosemary', 'Chamomile', 'Peppermint']},
