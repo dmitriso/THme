@@ -5,7 +5,8 @@ $(document).ready(function () {
   const key = "zBGPK18"; //Dmitris key. Nates is WDnZQMY
 
   //Ailment selection dropdown
-  var aliments = ['depression', 'stress', 'cramps', 'inflammation', 'lack of appetite', 'fatigue', 'glaucoma', 'headache', 'insomnia', 'pain', 'nausea', 'seizures']
+  var aliments = ['Depression', 'Stress', 'Cramps', 'Inflammation', 'Lack of Appetite', 'Fatigue', 'Glaucoma', 'Headache', 'Insomnia', 'Pain', 'Nausea', 'Seizures']
+  //Loop to add each ailment to the dropdown
   for (let index = 0; index < aliments.length; index++) {
       $('<option>').text(aliments[index]).attr('id', aliments[index]).appendTo('#symptoms')
     };
@@ -15,9 +16,19 @@ $(document).ready(function () {
 
     //Clear out any data on the DOM
     $('#strain-list, #herbal, #strain-descrip, #flavors, #posi-effects, #neg-effects').empty();
-    //Variable that is set the selected ailment 
-    let $userChoice = $('#symptoms option:selected').val()
-    
+
+    //Variable that is set to the user selected ailment 
+    let $userChoice = $('#symptoms option:selected').val().toLowerCase();
+
+    //If selection left blank ask for user to make a choice
+    if ($('#symptoms option:selected').text() === '' ){
+      $('#symptoms-id').text('Please make a choice');
+      return;
+    //If selection is glaucoma convert into the proper string for the Strain API search
+    }else if ($userChoice === 'glaucoma'){
+      $userChoice = 'eye%20pressure'
+    }
+
     //*** Strain API****//
     //------------------//
     //Strain API call for ailment
@@ -25,7 +36,6 @@ $(document).ready(function () {
       url: `https://strainapi.evanbusse.com/${key}/strains/search/effect/${$userChoice}`,
       method: "GET",
     }).then(function(effect){
-      // console.log(effect);
 
       //Storage array for randomly generated strains. This array holds objects returned from API call
       let strainRecID = []
@@ -35,7 +45,7 @@ $(document).ready(function () {
         let randoPick = Math.floor(Math.random() * (effect.length - 1));
         //push the strain IDs to the strainRecID storage Array
         strainRecID.push(effect[randoPick])
-      }//console.log(strainRecID)
+      }
 
       //for loop to create a li element for strainRecId's length and write the name of the strain in each li element. Element id corresponds with strain ID#
       for (let i = 0; i < strainRecID.length; i++) {
@@ -115,7 +125,7 @@ $(document).ready(function () {
       {name:'inflammation', id: 58},
       {name:'lack of appetite', id: 60},
       {name:'fatigue', id: 144},
-      {name:'glaucoma', id: 157},
+      {name:'eye%20pressure', id: 157}, //glaucoma 
       {name:'headache', id: 165},
       {name:'insomnia', id: 190},
       {name:'pain', id: 224},
@@ -135,11 +145,8 @@ $(document).ready(function () {
       } 
     }
  
-    //If selection left blank ask for user to make a choice
-    if ($('#symptoms option:selected').attr('id') === 'symptoms-id' ){
-      $('#symptoms-id').text('Please make a choice');
     //If cramps chosen return remedies from cramps array
-    }else if ($userChoice === 'cramps'){
+    if($userChoice === 'cramps'){
       for (let i = 0; i < 5; i++) {
         $('<li>').attr("id", `herb-${i + 1}`).text(cramps[i]).appendTo('#herbal');
       }
@@ -156,11 +163,12 @@ $(document).ready(function () {
           url: `https://nutridigm-api-dev.azurewebsites.net/api/v1/nutridigm/suggest?subscriptionId=1&problemId=${userProb()}&fg2=k2`,
           method: "GET",
         }).then(function (herbs){
-          for (let i = 0; i < 5; i++) {
-            $('<li>').attr("id", `herb-${i + 1}`).text(herbs[i].fiDisplay).appendTo('#herbal');
+          //For loop limits the response to 5 remedies and prevents errors if less than 5 are returned from the PR API
+          for (let i = 0; i < 5 && i < herbs.length; i++) {
+            //Add
+            $('<li>').attr("id", `herb-${i + 1}`).text(herbs[i].fiDisplay).appendTo('#herbal')
             //If medical cannabis is returned, it is not added to the list
             if($(`#herb-${i + 1}`).text().toLowerCase() === 'medical cannabis'){
-              console.log('sup')
               $(`#herb-${i + 1}`).remove();
             }
           }
