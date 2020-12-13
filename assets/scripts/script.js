@@ -5,7 +5,7 @@ $(document).ready(function () {
   const key = "zBGPK18"; //Dmitris key. Nates is WDnZQMY
 
   //Ailment selection dropdown
-  var aliments = ['Cramps', 'Depression', 'Fatigue', 'Glaucoma', 'Headache',  'Inflammation', 'Insomnia', 'Lack of Appetite', 'Nausea', 'Pain', 'Seizures', 'Stress']
+  var aliments = ['Cramps', 'Depression', 'Fatigue', 'Glaucoma', 'Headache',  'Inflammation', 'Insomnia', 'Lack of Appetite', 'Muscle Spasms', 'Nausea', 'Pain', 'Seizures', 'Stress']
   //Loop to add each ailment to the dropdown
   for (let index = 0; index < aliments.length; index++) {
       $('<option>').text(aliments[index]).attr('id', aliments[index]).appendTo('#symptoms')
@@ -24,9 +24,11 @@ $(document).ready(function () {
     if ($('#symptoms option:selected').text() === '' ){
       $('#symptoms-id').text('Please make a choice');
       return;
-    //If selection is glaucoma convert into the proper string for the Strain API search
+    //If selection is glaucoma or muscle spasms convert into the proper string for the Strain API search
     }else if ($userChoice === 'glaucoma'){
       $userChoice = 'eye%20pressure'
+    }else if ($userChoice === 'muscle spasms'){
+      $userChoice = 'muscle%20spasms'
     }
 
     //*** Strain API****//
@@ -36,7 +38,6 @@ $(document).ready(function () {
       url: `https://strainapi.evanbusse.com/${key}/strains/search/effect/${$userChoice}`,
       method: "GET",
     }).then(function(effect){
-
       //Storage array for randomly generated strains. This array holds objects returned from API call
       let strainRecID = []
 
@@ -106,13 +107,14 @@ $(document).ready(function () {
     ---------------
     18 - depression
     21 - stress
-    32 - cramps - no data from PR, not in prProbID array
+    32 - muscle cramps/spasms - no data from PR, not in prProbID array
     58 - inflammation
     60 - lack of appetite
     144 - fatigue
     157 - glaucoma
     165 - headache
     190 - insomnia
+    213 - menstrual cramps  - no data from PR, not in prProbID array
     224 - pain
     229 - nausea
     260 - seizures - no data from PR, not in prProbID array
@@ -132,8 +134,13 @@ $(document).ready(function () {
       {name:'nausea', id: 229},
     ];
    
+    //Array with ailment remedies that the PR API returns as null
     //List if herbal remedies for cramps found on https://herbalcommittea.com/
-    const cramps = ['Chasteberry', 'Raspberry Leaf', 'Chamomile', 'Fennel', 'Wild Yam'];
+    const noPrProb = [
+      {name: 'cramps', remedies: ['Chasteberry', 'Raspberry Leaf', 'Chamomile', 'Fennel', 'Wild Yam'] },
+      {name: 'muscle%20spasms', remedies: ['Magnesium', 'Lavender', 'Rosemary', 'Chamomile', 'Peppermint']},
+      {name: 'seizures', remedies: ['Due to the severity of seizures we recommend speaking to your doctor before taking any herbal supplements.'] }
+    ]
 
     //Function to get the PR id# of the users ailment choices. Result is called on in the PR API call url
     let  userProb = () => {
@@ -144,19 +151,9 @@ $(document).ready(function () {
         }
       } 
     }
- 
-    //If cramps chosen return remedies from cramps array
-    if($userChoice === 'cramps'){
-      for (let i = 0; i < 5; i++) {
-        $('<li>').attr("id", `herb-${i + 1}`).text(cramps[i]).appendTo('#herbal');
-      }
-    //If seizures chosen return message
-    }else if($userChoice === 'seizures'){
-      $('<li>').attr("id", `herb-1`).text('Due to the severity of seizures we recommend speaking to your doctor before taking any herbal supplements.').appendTo('#herbal');
-    }
 
-    //Loop through the prProb arr
-    for (let i = 0; i < prProbID.length; i++) {
+     //Loop through the prProb arr
+     for (let i = 0; i < prProbID.length; i++) {
       //if the users choice and the PR ailment are equal, add the first 5 remedies returned from the PR API call
       if ($userChoice === prProbID[i].name){
         $.ajax({
@@ -165,7 +162,7 @@ $(document).ready(function () {
         }).then(function (herbs){
           //For loop limits the response to 5 remedies and prevents errors if less than 5 are returned from the PR API
           for (let i = 0; i < 5 && i < herbs.length; i++) {
-            //Add
+            //Append the results to the DOM
             $('<li>').attr("id", `herb-${i + 1}`).text(herbs[i].fiDisplay).appendTo('#herbal')
             //If medical cannabis is returned, it is not added to the list
             if($(`#herb-${i + 1}`).text().toLowerCase() === 'medical cannabis'){
@@ -176,6 +173,16 @@ $(document).ready(function () {
       }
     }
 
+    //Loop through noPrProb
+    for (let i = 0; i < noPrProb.length; i++) {
+      //if the users choice is an ailment that has no data from the PR API then pull remedies from the PR noPrProb array and append to DOM
+      if ($userChoice === noPrProb[i].name){
+        for (let j = 0; j < noPrProb[i].remedies.length; j++) {
+          $('<li>').attr("id", `herb-${i + 1}`).text(noPrProb[i].remedies[j]).appendTo('#herbal');
+        }
+      }
+    }
+ 
   });//End of submit button listener
 
 });
