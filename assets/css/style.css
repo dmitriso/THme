@@ -1,6 +1,10 @@
 body {
   background-color: #B3C8B1;
 }
+.hide{
+  display: none;
+}
+
 .menu {
   background-color: #C5FF9B;
 }
