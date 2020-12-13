@@ -200,4 +200,38 @@ var strainHistory = [];
  
   });//End of submit button listener
 
+  
+
+ // Local Storage by Dmitri Kent So
+  // this retrieves the stored list of strain ids
+  var strainHistory = [];
+  var storedStrains = JSON.parse(localStorage.getItem("storedStrains"))
+  console.log(storedStrains);
+  // Global variable to store strains that a user clicks on
+  if (storedStrains === null) {
+  } else {
+    strainHistory = storedStrains;
+    console.log(strainHistory);
+  }
+
+  // Local storage generating previous strain names as buttons DS
+  for (var i = 0; i < 10; i++) {
+    console.log("this worked");
+    $("#strain-history").prepend($("<button>").addClass("savedStrain").text(strainHistory[i]));
+    
+  }
+
+  // Clear button to empty sibling ("#strain-history") of text
+  $('#clear-btn').click(() => {
+    localStorage.clear();
+    $('#strain-history').empty();
+  });
+
+  // Event listener that uses searched strain id to display data
+  $(".savedStrain").on("click", function () {
+
+
+  })
+  // End of strain history button event DS
+
 });
