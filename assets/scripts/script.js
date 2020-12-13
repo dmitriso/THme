@@ -1,6 +1,5 @@
-
-// Strain API ds
 $(document).ready(function () {
+  
   //Strain API keys
   const key = "zBGPK18"; //Dmitris key. Nates is WDnZQMY
 
