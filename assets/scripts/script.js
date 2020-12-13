@@ -2,15 +2,20 @@ $(document).ready(function () {
   
   // Local Storage by Dmitri Kent So
   // this retrieves the stored list of strain ids
-  var strainHistory = [];
-  var storedStrains = JSON.parse(localStorage.getItem("storedStrains"))
+  // var strainHistory = [];
+  let storedStrains = JSON.parse(localStorage.getItem('storedStrains'))
   console.log(storedStrains);
   // Global variable to store strains that a user clicks on
   if (storedStrains === null) {
-  } else {
-    strainHistory = storedStrains;
-    console.log(strainHistory);
-  }
+    storedStrains = [];
+  } //else {
+  //   strainHistory = storedStrains;
+  //   console.log(strainHistory);
+  // }
+  for (let i = 0; i < storedStrains.length; i++) {
+    $('<option>').attr('id', storedStrains[i].id).text(storedStrains[i].name).appendTo('#saved-strains')
+  };
+
 
   // localStorage.clear();
   //Strain API keys
@@ -196,18 +201,20 @@ $(document).ready(function () {
         e.preventDefault();
         //variable that corresponds with the strain ID of the clicked in strain name. This is used to make the next API calls.
         let $strainID = $(this).attr('id');
-
+        let $strainName = $(this).text();
+      
         strainDetails($strainID);
         $('#save-btn').css('display', 'block')
+        
 
         // Local Storage by Dmitri Kent So
         // this will set an array of user clicked strain ids into local storage
-        $('#save-btn').on('click', function(e){
+        $('#save-btn').off().on('click', function(e){
         e.preventDefault;
-        var $strainName = {name: $(this).text(), id: $strainID};
-        strainHistory.push($strainName);
-        localStorage.setItem("storedStrains", JSON.stringify(strainHistory));
-        console.log($strainName);
+        var $strainObj = {name: $strainName, id: $strainID};
+        storedStrains.push($strainObj);
+        localStorage.setItem('storedStrains', JSON.stringify(storedStrains));
+        $('<option>').attr('id', $strainObj.id).text($strainObj.name).appendTo('#saved-strains')
         })
         
 
@@ -218,9 +225,7 @@ $(document).ready(function () {
     });//End of initial Strain API call
   });//End of submit button listener
 
-  for (let i = 0; i < strainHistory.length; i++) {
-    $('<option>').attr('id', strainHistory[i].id).text(strainHistory[i].name).appendTo('#saved-strains')
-  };
+  
 
   $('#info-btn').on('click', function(e) {
     e.preventDefault;
@@ -232,6 +237,7 @@ $(document).ready(function () {
   $('#clear-btn').click(() => {
     localStorage.clear();
     $('#saved-strains').empty();
+    storedStrains = [];
   });
 
 
