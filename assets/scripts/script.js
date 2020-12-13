@@ -1,7 +1,7 @@
-var strainHistory = [];
+
 // Strain API ds
 $(document).ready(function () {
-
+var strainHistory = [];
   // localStorage.clear();
 
   // var allEffects = [];
@@ -46,6 +46,8 @@ $(document).ready(function () {
   //   })
   // }
   // getEffects();
+
+
   var aliments = ['depression', 'stress', 'inflammation', 'lack of appetite', 'fatigue', 'glaucoma', 'headache', 'insomnia', 'pain', 'nausea']
   for (let index = 0; index < aliments.length; index++) {
     $('<option>').text(aliments[index]).attr('id', aliments[index]).appendTo('#symptoms')
@@ -91,12 +93,14 @@ $(document).ready(function () {
         //variable that corresponds with the strain ID of the clicked in strain name. This is used to make the next API calls.
         let $strainID = $(this).attr('id');
 
+
         // Local Storage by Dmitri Kent So
         // this will set an array of user clicked strain ids into local storage
         var $strainName = $(this).text();
         strainHistory.push($strainName);
         localStorage.setItem("storedStrains", JSON.stringify(strainHistory));
         console.log(strainHistory);
+
 
 
         //API call to get the flavors of the chosen strain
@@ -235,57 +239,3 @@ $(document).ready(function () {
 
 
 
-//*** Old Code. Saving just in case ***//
-//-------------------------------------//
-
-// var userEffect =$("#checkbox1").val();
-//   var effectURL = `https://strainapi.evanbusse.com/zBGPK18/strains/search/effect/${userEffect}`;
-//   $.ajax({
-//     url: effectURL,
-//     method: "Get"
-//   }).then(function (effectRec) {
-//     console.log(effectRec);
-//     var effRec =  [];
-//     // This generates 5 random strain names from the effect reccomendation list
-//     for (var i = 0; i <5; i++) {
-//     var userEffectRec = Math.floor(Math.random() * (effectRec.length - 1));
-//     // console.log(userEffectRec);
-//     effRec.push(effectRec[userEffectRec].name);
-//     console.log(effRec);
-//     }
-//   })
-
-// // this function has an ajax call that pulls strain info based off of the strain id
-// $("li").on("click", function(){
-//   function strainInfo() {
-//     var strainId =$(this);
-//     var strainDesURL = `https://strainapi.evanbusse.com/${key}/strains/data/desc/${strainId}`;
-//     var strainEffURL = `https://strainapi.evanbusse.com/${key}/strains/data/effects/${strainId}`;
-//     var strainFlaURL = `https://strainapi.evanbusse.com/${key}/strains/data/flavors/${strainId}`;
-
-//     $.ajax({
-//       url: strainDesURL,
-//       method: "Get"
-//     }).then(function (strainDes) {
-//       console.log(strainDes);
-
-//     })
-
-//     $.ajax({
-//       url: strainEffURL,
-//       method: "Get"
-//     }).then(function (strainEff) {
-//       console.log(strainEff);
-
-//     })
-
-//     $.ajax({
-//       url: strainFlaURL,
-//       method: "Get"
-//     }).then(function (strainFl) {
-//       console.log(strainFl);
-
-//     })
-//   }
-//   strainInfo();
-// })
