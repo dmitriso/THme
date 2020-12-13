@@ -1,13 +1,9 @@
-body {
-  background-color: #B3C8B1;
-}
-
 .hide{
   display: none;
 }
 
 .menu {
-  background-color: #C5FF9B;
+  background-color: #C5FF9B !important;
 }
 
 .card {
@@ -33,12 +29,14 @@ body {
 .effects {
   margin-left: auto !important;
   margin-right: 0 !important;
-  height: fit-content;
+  margin-bottom: 0 !important;
 }
 
 .callout{
   margin-left: auto;
   margin-right: auto;
+  background-color: #C5FF9B;
+  padding: 0;
 }
 
 .tag-line{
@@ -49,24 +47,34 @@ body {
   padding-left: 5px;
 }
 
-.switch-paddle, .switch, .switch-input{
-  width: 65px;
-  height: 35px;
-}
-
 .age-ver{
   height: 400px !important;
+  margin-top: 10px;
 }
 
-#userbox{
-  width: 900px;
+#intro {
+  margin-top: 10px;
 }
 
+#warningbox, #symptombox{
+  margin-top: 10px;
+}
 
+#userbox {
+  width: 750px;
+}
+
+li{
+    list-style: none;
+    list-style-position:inside;
+    border-bottom: 1px solid black;
+}
+.menu{
+  border: none;
+}
 input:checked~.switch-paddle{
   background-color: #5b724b;
 }
-
 
 /* screen is mobile, goes to mobile width */
 @media only screen and (max-width: 300px){
