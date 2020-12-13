@@ -18,6 +18,7 @@
 </head>
 
 <!--NAV BAR-->
+
 <body>
   <ul class="menu">
     <li class="">
@@ -28,34 +29,34 @@
     </li>
   </ul>
 
-<!--AGE VERFICATION-->
-<div class="callout age-ver" data-closable>
+  <!--AGE VERFICATION-->
+  <div class="callout age-ver" data-closable>
     </button>
-      <div class="card-divider">
-        Age Verfication
-      </div>
-      <div class="card-section ">
-        <label>Day
-          <select id="days">
-            <option id="days-verifiction" value="days-verifiction"></option>
-          </select>
-        </label>
-        <label>Month
-          <select id="months">
-            <option id="months-verifiction" value="months-verifcation"></option>
-          </select>
-        </label>
-        <label>Year
-          <select id="years">
-            <option id="years-ver"></option>
-          </select>
-        </label>
-        <input type="submit" class="button" value="Submit" id="agebtn">
-      </div>
-</div>
+    <div class="card-divider">
+      Age Verfication
+    </div>
+    <div class="card-section ">
+      <label>Day
+        <select id="days">
+          <option id="days-verifiction" value="days-verifiction"></option>
+        </select>
+      </label>
+      <label>Month
+        <select id="months">
+          <option id="months-verifiction" value="months-verifcation"></option>
+        </select>
+      </label>
+      <label>Year
+        <select id="years">
+          <option id="years-ver"></option>
+        </select>
+      </label>
+      <input type="submit" class="button" value="Submit" id="agebtn">
+    </div>
+  </div>
 
-<!--WARNING-->
-<div class="callout" id="warningbox">
+  <!--WARNING-->
+  <div class="callout" id="warningbox">
     <div class="card-divider">
       Warning
     </div>
@@ -63,102 +64,117 @@
       <p>Warning Text Goes Here</p>
       <input type="submit" class="button" value="Continue" id="warningbtn">
     </div>
-</div>
+  </div>
 
-<!--SYMPTOM SELECTION-->
-<div class="card callout" id="symptombox">
-  <div class="card-divider">
+  <!--SYMPTOM SELECTION-->
+  <div class="card callout" id="symptombox">
+    <div class="card-divider">
       Pick Symptoms
-  </div>
-    <div class="card-section">
-        <h4>Please Choose a Symptom</h4>
-        <label>Symptoms
-          <select id="symptoms">
-            <option id="symptoms-id" value="symptoms-value"></option>
-          </select>
-        </label>
-          <button type="button" class="success button" id="submitBtn">Save</button>
     </div>
-</div>
-
-<!--USER OUTPUT-->
-<div class="card" id="userbox">
-  <div class="card-divider">
-      Your Recommendations
+    <div class="card-section">
+      <h4>Please Choose a Symptom</h4>
+      <label>Symptoms
+        <select id="symptoms">
+          <option id="symptoms-id" value="symptoms-value"></option>
+        </select>
+      </label>
+      <button type="button" class="success button" id="submitBtn">Save</button>
+    </div>
   </div>
+
+  <!--USER OUTPUT-->
+  <div class="card" id="userbox">
+    <div class="card-divider">
+      Your Recommendations
+    </div>
     <!--STRAIN OUTPUT-->
-      <div class="output">
-        <div class="card effects card-properties">
-          <div class="card-divider"> <!--TITLE FOR STRAIN-->
-            Strain Name
-          </div>
+    <div class="output">
+      <div class="card effects card-properties">
+        <div class="card-divider">
+          <!--TITLE FOR STRAIN-->
+          Strain Name
+        </div>
         <div class="card-section list-descrip">
           <div id="output-section" class="card-section">
-          <div id="output" class="card-section">
-            <ul id="strain-list"></ul> <!-- Added ul and id - nk --> <!--STRAIN LIST-->
-          </div>
+            <div id="output" class="card-section">
+              <ul id="strain-list"></ul> <!-- Added ul and id - nk -->
+              <!--STRAIN LIST-->
+            </div>
           </div>
           <div>
-            <p id="strain-descrip"></p><!-- moved id down form parent div -nk--> <!--STRAIN DESCRIPTION-->
+            <p id="strain-descrip"></p><!-- moved id down form parent div -nk-->
+            <div>
+              <button type="button" class="button" id="save-btn" style="display: none">Save Strain</button><!-- added save button -nk -->
+            </div>
+            <!--STRAIN DESCRIPTION-->
           </div>
         </div>
       </div>
-      </div>
-</div>
-      <!--FLAVOR-EFFECTS SECTION-->
-    
-        <!--FLAVOR/HERBAL EFFECTS-->
-<div class="output callout" id="effectsbox1">
-      <div class="card effects">
-        <div class="card-divider"> <!--TITLE FOR FLAVORS-->
-            Flavors Profiles
-        </div>
-        <div class="card-section"> <!--BODY FOR FLAVORS-->
-          <ul id="flavors"></ul> <!-- Added ul and id - nk -->
-        </div>
-      </div>
-      <div class="card effects">
-        <div class="card-divider"><!--TITLE FOR REMEDIES-->
-              Herbal Remedies
-        </div>
-          <div class="card-section"><!--BODY FOR HERBAL REMEDIES-->
-            <ul id="herbal"></ul> <!-- Added ul and id - nk -->
-          </div>
     </div>
   </div>
-        <!--POSITIVE/NEGATIVE EFFECTS-->
-<div class="output callout" id="effectsbox2">
-        <div class="card effects card-properties">
-            <div class="card-divider">
-              Positive Effects
-            </div>
-            <div class="card-section">
-              <ul id="posi-effects"></ul> <!-- Added ul and id - nk -->
-            </div>
-        </div>
-        <div class="card effects card-properties">
-            <div class="card-divider">
-              Negative Effects
-            </div>
-          <div class="card-section">
-              <ul id="neg-effects"></ul> <!-- Added ul and id - nk -->
-          </div>
-        </div>
+  <!--FLAVOR-EFFECTS SECTION-->
+
+  <!--FLAVOR/HERBAL EFFECTS-->
+  <div class="output callout" id="effectsbox1">
+    <div class="card effects"><div>
+      <button type="button" class="button" id="save-btn" style="display: none">Save Strain</button><!-- added save button -nk -->
+    </div>
+      <div class="card-divider">
+        <!--TITLE FOR FLAVORS-->
+        Flavors Profiles
+      </div>
+      <div class="card-section">
+        <!--BODY FOR FLAVORS-->
+        <ul id="flavors"></ul> <!-- Added ul and id - nk -->
+      </div>
+    </div>
+    <div class="card effects">
+      <div class="card-divider">
+        <!--TITLE FOR REMEDIES-->
+        Herbal Remedies
+      </div>
+      <div class="card-section">
+        <!--BODY FOR HERBAL REMEDIES-->
+        <ul id="herbal"></ul> <!-- Added ul and id - nk -->
+      </div>
+    </div>
+  </div>
+  <!--POSITIVE/NEGATIVE EFFECTS-->
+  <div class="output callout" id="effectsbox2">
+    <div class="card effects card-properties">
+      <div class="card-divider">
+        Positive Effects
+      </div>
+      <div class="card-section">
+        <ul id="posi-effects"></ul> <!-- Added ul and id - nk -->
+      </div>
+    </div>
+    <div class="card effects card-properties">
+      <div class="card-divider">
+        Negative Effects
+      </div>
+      <div class="card-section">
+        <ul id="neg-effects"></ul> <!-- Added ul and id - nk -->
+      </div>
+    </div>
+  </div>
+  <!--END OF EFFECTS SECTION-->
+
+  <!-- STRAIN SEARCH HISTORY DS -->
+  <div id="savedstrain">
+    <select id="saved-strains"> <!-- created dropdown and added 2 buttons - nk-->
+      <option id="saved-strains-id" value="saved-strains-value">Your Saved Strains</option>
+    </select>
+  <button id="info-btn" class="button">Display Info</button>
+  <button id="clear-btn" class="button">Clear History</button>
 </div>
-        <!--END OF EFFECTS SECTION-->
-      
-      <!-- STRAIN SEARCH HISTORY DS -->
-<div class="card row callout" id="savedstrain">
-        <ul id="strain-history">
-        </ul>
-        <button id="clear-btn">Clear History</button>
-</div>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="./assets/scripts/script.js"></script>
-      <script src="./assets/scripts/agescript.js"></script>
-      <!-- Foundation JavaScript -->
-      <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
-        integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="./assets/scripts/script.js"></script>
+  <script src="./assets/scripts/agescript.js"></script>
+  <!-- Foundation JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+    integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
 </body>
 
 </html>
