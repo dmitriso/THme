@@ -29,7 +29,7 @@
   </ul>
 
 <!--AGE VERFICATION-->
-   <div class="callout age-ver" data-closable>
+<div class="callout age-ver" data-closable>
     </button>
       <div class="card-divider">
         Age Verfication
@@ -52,10 +52,10 @@
         </label>
         <input type="submit" class="button" value="Submit" id="agebtn">
       </div>
-  </div>
+</div>
 
 <!--WARNING-->
-  <div class="callout" id="warningbox">
+<div class="callout" id="warningbox">
     <div class="card-divider">
       Warning
     </div>
@@ -63,98 +63,96 @@
       <p>Warning Text Goes Here</p>
       <input type="submit" class="button" value="Continue" id="warningbtn">
     </div>
-  </div>
+</div>
 
 <!--SYMPTOM SELECTION-->
-  <div class="card" id="symptombox"style="width: 500px;">
-    <div class="card-divider">
+<div class="card callout" id="symptombox">
+  <div class="card-divider">
       Pick Symptoms
-    </div>
-    <div class="card-section">
-      <h4>Please Choose a Symptom</h4>
-      <label>Symptoms
-        <select id="symptoms">
-          <option id="symptoms-id" value="symptoms-value"></option>
-        </select>
-      </label>
-      <button type="button" class="success button" id="submitBtn">Save</button>
-    </div>
   </div>
+    <div class="card-section">
+        <h4>Please Choose a Symptom</h4>
+        <label>Symptoms
+          <select id="symptoms">
+            <option id="symptoms-id" value="symptoms-value"></option>
+          </select>
+        </label>
+          <button type="button" class="success button" id="submitBtn">Save</button>
+    </div>
+</div>
 
 <!--USER OUTPUT-->
-  <div class="card" id="userbox" style="width: 900px;">
-    <div class="card-divider">
+<div class="card" id="userbox">
+  <div class="card-divider">
       Your Recommendations
-    </div>
+  </div>
     <!--STRAIN OUTPUT-->
-    <div>
-      <div class="strain-output">
+      <div class="output">
         <div class="card effects card-properties">
-          <div class="card-divider">
+          <div class="card-divider"> <!--TITLE FOR STRAIN-->
             Strain Name
           </div>
         <div class="card-section list-descrip">
           <div id="output-section" class="card-section">
           <div id="output" class="card-section">
-            <ul id="strain-list"></ul> <!-- Added ul and id - nk -->
+            <ul id="strain-list"></ul> <!-- Added ul and id - nk --> <!--STRAIN LIST-->
           </div>
           </div>
           <div>
-            <p id="strain-descrip"></p><!-- moved id down form parent div -nk-->
+            <p id="strain-descrip"></p><!-- moved id down form parent div -nk--> <!--STRAIN DESCRIPTION-->
           </div>
         </div>
       </div>
       </div>
+</div>
       <!--FLAVOR-EFFECTS SECTION-->
-      <div class="col effects-flavor-col">
+    
         <!--FLAVOR/HERBAL EFFECTS-->
-        <div class="row">
-          <div class="card effects card-properties">
-            <div class="card-divider">
-              Flavors Profiles
-            </div>
-            <div class="card-section">
-              <ul id="flavors"></ul> <!-- Added ul and id - nk -->
-            </div>
-          </div>
-          <div class="card card-properties">
-            <div class="card-divider">
-              Herbal Remedies
-            </div>
-            <div class="card-section">
-              <ul id="herbal"></ul> <!-- Added ul and id - nk -->
-            </div>
-          </div>
+<div class="output callout" id="effectsbox1">
+      <div class="card effects">
+        <div class="card-divider"> <!--TITLE FOR FLAVORS-->
+            Flavors Profiles
         </div>
+        <div class="card-section"> <!--BODY FOR FLAVORS-->
+          <ul id="flavors"></ul> <!-- Added ul and id - nk -->
+        </div>
+      </div>
+      <div class="card effects">
+        <div class="card-divider"><!--TITLE FOR REMEDIES-->
+              Herbal Remedies
+        </div>
+          <div class="card-section"><!--BODY FOR HERBAL REMEDIES-->
+            <ul id="herbal"></ul> <!-- Added ul and id - nk -->
+          </div>
+    </div>
+  </div>
         <!--POSITIVE/NEGATIVE EFFECTS-->
-        <div class="row">
-          <div class="card effects card-properties">
+<div class="output callout" id="effectsbox2">
+        <div class="card effects card-properties">
             <div class="card-divider">
               Positive Effects
             </div>
             <div class="card-section">
               <ul id="posi-effects"></ul> <!-- Added ul and id - nk -->
             </div>
-          </div>
-          <div class="card card-properties">
+        </div>
+        <div class="card effects card-properties">
             <div class="card-divider">
               Negative Effects
             </div>
-            <div class="card-section">
+          <div class="card-section">
               <ul id="neg-effects"></ul> <!-- Added ul and id - nk -->
-            </div>
           </div>
         </div>
+</div>
         <!--END OF EFFECTS SECTION-->
-      </div>
+      
       <!-- STRAIN SEARCH HISTORY DS -->
-      <div>
+<div class="card row callout" id="savedstrain">
         <ul id="strain-history">
-
         </ul>
         <button id="clear-btn">Clear History</button>
-      </div>
-
+</div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="./assets/scripts/script.js"></script>
       <script src="./assets/scripts/agescript.js"></script>
