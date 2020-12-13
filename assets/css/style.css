@@ -1,6 +1,7 @@
 body {
   background-color: #B3C8B1;
 }
+
 .hide{
   display: none;
 }
@@ -8,21 +9,22 @@ body {
 .menu {
   background-color: #C5FF9B;
 }
+
 .card {
-  margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
 }
-.card-properties{
-  width: 150px !important;
-}
+
 .effects-flavor-col{
-  display: flex;
   justify-content: center;
 }
-.strain-output{
+
+.output{
   display: flex;
+  flex-direction: row;
+  background-color:  #B3C8B1;
 }
+
 .list-descrip{
   display: flex;
   justify-content: center;
@@ -31,167 +33,62 @@ body {
 .effects {
   margin-left: auto !important;
   margin-right: 0 !important;
-  height: 300px;
+  height: fit-content;
 }
-.row {
-  display: flex;
-  width: 320px;
-}
+
 .callout{
   margin-left: auto;
   margin-right: auto;
 }
+
 .tag-line{
   margin-left: auto;
 }
+
 .tag-line-text{
   padding-left: 5px;
 }
+
 .switch-paddle, .switch, .switch-input{
   width: 65px;
   height: 35px;
 }
+
 .age-ver{
   height: 400px !important;
 }
+
+#userbox{
+  width: 900px;
+}
+
+
 input:checked~.switch-paddle{
   background-color: #5b724b;
 }
-/* .modal-backdrop{
-    opacity:0.75 !important;
-  }
-  
-  @media only screen and (max-width:767px) {
-     #modal-error{
-      background: rgba(223,32,44,0.5);
-       margin-top: 15px;
-       margin-left: 15px;
-      width: 90%;
-      margin-bottom: 15px;
-    }
-    #ageModal{
-    .modal-dialog{
-      border: 0;
-      border-box-shadow: 0;
-      min-width: 350px;
-      .modal-content{
-        height: 100%;
-        background: white;
-        border:none;
-        padding: 15px;
-        .modal-body{
-          background: white;
-          border-radius: 5px;
-          width: 100%;
-          height: 100%;
-          #modal-age-limit{
-            >h1{
-              padding: 0;
-              margin: 0;
-              font-size: 25px;
-              text-align: center;
-            }
-          }
-          #age-submit{
-            float: right;
-            border: 2px solid black;
-            border-radius: 0;
-            background-color: #DF202C;
-            color: white;
-            &:hover{
-              background-color: darken(#DF202C, 15%);
-            }
-          }
-        }
-        .modal-footer{
-          border-top: 0;
-          text-align: center;
-        }
-      }
-    }
-  }
-  }
-  @media only screen and (min-width: 768px) {
-    #modal-error{
-      background: rgba(223,32,44,0.5);
-      padding: 2px;
-      width: 355px;
-      margin-left: 13px;
-      padding-left: 15px;
-      margin-bottom: 15px;
-    }
-  
-    #ageModal{
-      .modal-dialog{
-        border: 0;
-        min-width: 350px;
-        height: 750px;
-        width: 750px;
-        .modal-content{
-          height: 100%;
-          background: white;
-          border:none;
-          padding: 15px 15px 0px 15px;
-          .modal-body{
-            width: 100%;
-            height: 100%;
-            #modal-age-limit{
-              >h1{
-                padding: 0;
-                margin: 0;
-                font-size: 25px;
-              }
-            }
-            .form-area{
-              margin-top: 180px;
-              margin-left: 225px;
-              margin-right: 40px;
-              #verify-month{
-                width: 300px;
-                margin-bottom: 5px;
-              }
-              #verify-day{
-                margin-left: 18px;
-                margin-bottom: 5px;
-                width: 300px;
-              }
-              #verify-year{
-                margin-left: 12px;
-                margin-bottom: 5px;
-                width: 300px;
-              }
-            }
-            #modal-age-limit{
-              >h4{
-                margin-top: 25px;
-              }
-            }
-            #age-submit-area{
-              #age-submit{
-                float: right;
-                border: 2px solid black;
-                border-radius: 0;
-                background: red;
-                color: white;
-                margin-top: 15px;
-                margin-right: 35px
-              }
-            }
-          }
-          .modal-footer{
-            border-top: 0;
-            padding: 0;
-            margin-left: -30px;
-            margin-right: -15px;
-            border-top: 2px solid gray;
-            background: rgba(white,.5);
-            text-align: center;
-            position: absolute;
-            bottom: 0;
-          }
-        }
-      }
-    }
 
-    
-  } */
+
+/* screen is mobile, goes to mobile width */
+@media only screen and (max-width: 300px){
+  #userbox{
+    width: 300px !important;
+  }
+  #usersymptom{
+    width: 300px !important;
+  }
+  #symptombox{
+    width: 250px !important;
+  }
+}
+/* screen is mobile, goes to mobile width */
+@media only screen and (max-width: 500px){
+  #userbox{
+    width: 500px !important;
+  }
+  #usersymptom{
+    width: 500px !important;
+  }
+  #symptombox{
+    width: 500px !important;
+  }
+}

@@ -28,6 +28,9 @@ var output = date.getFullYear() + '/' +
 $('#warningbox').addClass('hide');
 $('#symptombox').addClass('hide');
 $('#userbox').addClass('hide');
+$('#effectsbox1').addClass('hide');
+$('#effectsbox2').addClass('hide');
+$('#savedstrain').addClass('hide');
 //AGE VERIFICATION
 $('#agebtn').click(function (e) { 
     e.preventDefault();
@@ -56,4 +59,7 @@ $('#warningbtn').click(function (e) {
     $('#warningbox').attr('class', 'hide')
     $('#symptombox').removeClass('hide');
     $('#userbox').removeClass('hide');
+    $('#effectsbox1').removeClass('hide');
+    $('#effectsbox2').removeClass('hide');
+    $('#savedstrain').removeClass('hide');
 });
