@@ -93,17 +93,20 @@
           <div class="card-divider">
             Strain Name
           </div>
-        <div class="card-section list-descrip">
-          <div id="output-section" class="card-section">
-          <div id="output" class="card-section">
-            <ul id="strain-list"></ul> <!-- Added ul and id - nk -->
-          </div>
-          </div>
-          <div>
-            <p id="strain-descrip"></p><!-- moved id down form parent div -nk-->
+          <div class="card-section list-descrip">
+            <div id="output-section" class="card-section">
+              <div id="output" class="card-section">
+                <ul id="strain-list"></ul> <!-- Added ul and id - nk -->
+              </div>
+            </div>
+            <div>
+              <p id="strain-descrip"></p><!-- moved id down form parent div -nk-->
+              <div>
+                <button type="button" class="button" id="save-btn" style="display: none">Save Strain</button><!-- added save button -nk -->
+              </div>
+            </div>
           </div>
         </div>
-      </div>
       </div>
       <!--FLAVOR-EFFECTS SECTION-->
       <div class="col effects-flavor-col">
@@ -149,7 +152,7 @@
       </div>
       <!-- STRAIN SEARCH HISTORY DS -->
       <div>
-          <select id="saved-strains">
+          <select id="saved-strains"> <!-- created dropdown and added 2 buttons - nk-->
             <option id="saved-strains-id" value="saved-strains-value">Your Saved Strains</option>
           </select>
         <button id="info-btn" class="button">Display Info</button>

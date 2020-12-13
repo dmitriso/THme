@@ -198,7 +198,7 @@ $(document).ready(function () {
         let $strainID = $(this).attr('id');
 
         strainDetails($strainID);
-
+        $('#save-btn').css('display', 'block')
 
         // Local Storage by Dmitri Kent So
         // this will set an array of user clicked strain ids into local storage
@@ -209,7 +209,7 @@ $(document).ready(function () {
 
       });//End of event listener for strain details
 
-      // Add stored strains to a dropdown for user
+    
 
     });//End of initial Strain API call
   });//End of submit button listener
