@@ -1,69 +1,44 @@
-
-// Strain API ds
 $(document).ready(function () {
 var strainHistory = [];
   // localStorage.clear();
 
-  // var allEffects = [];
   //Strain API keys
   const key = "zBGPK18"; //Dmitris key. Nates is WDnZQMY
-  // // This fuction grabs all effects from the strain API
-  // function getEffects() {
-  //   var effectsURL = `https://strainapi.evanbusse.com/${key}/searchdata/effects`;
-  //   $.ajax({
-  //     url: effectsURL,
-  //     method: "Get"
-  //   }).then(function (effects) {
-  //     allEffects.push(effects);
-  //     // sets all effects for  user selection
-  //     // console.log(allEffects);
-  //     // depression
-  //     $("#checkbox1").val(allEffects[0][5].effect);
-  //     // insomnia
-  //     $("#checkbox2").val(allEffects[0][6].effect);
-  //     // muscl aches/pains
-  //     $("#checkbox3").val(allEffects[0][7].effect);
-  //     // stress
-  //     $("#checkbox4").val(allEffects[0][8].effect);
-  //     // menstrual cramps
-  //     // $("#checkbox5").val(allEffects[0][].effect);
-  //     // leg cramps
-  //     // $("#checkbox6").val(allEffects[0][].effect);
-  //     // poor appetites
-  //     $("#checkbox7").val(allEffects[0][13].effect);
-  //     // nausea 
-  //     $("#checkbox8").val(allEffects[0][14].effect);
-  //     // headache
-  //     $("#checkbox9").val(allEffects[0][16].effect);
-  //     // fatigue
-  //     $("#checkbox10").val(allEffects[0][21].effect);
-  //     // anti inflammation diet
-  //     $("#checkbox11").val(allEffects[0][29].effect);
-  //     // seizures
-  //     $("#checkbox12").val(allEffects[0][31].effect);
-  //     // muscle cramps
-  //     // $("#checkbox13").val(allEffects[0][].effect);
-  //   })
-  // }
-  // getEffects();
 
-
-  var aliments = ['depression', 'stress', 'inflammation', 'lack of appetite', 'fatigue', 'glaucoma', 'headache', 'insomnia', 'pain', 'nausea']
+  //Ailment selection dropdown
+  var aliments = ['Cramps', 'Depression', 'Fatigue', 'Glaucoma', 'Headache',  'Inflammation', 'Insomnia', 'Lack of Appetite', 'Muscle Spasms', 'Nausea', 'Pain', 'Seizures', 'Stress']
+  //Loop to add each ailment to the dropdown
   for (let index = 0; index < aliments.length; index++) {
-    $('<option>').text(aliments[index]).attr('id', aliments[index]).appendTo('#symptoms')
-  };
+      $('<option>').text(aliments[index]).attr('id', aliments[index]).appendTo('#symptoms')
+    };
+
   //Submit button event listener to kick off API calls
-  $("#submitBtn").on("click", function () {
+  $('#submitBtn').on('click', function(){
+
+    //Clear out any data on the DOM
+    $('#strain-list, #herbal, #strain-descrip, #flavors, #posi-effects, #neg-effects').empty();
+
+    //Variable that is set to the user selected ailment 
+    let $userChoice = $('#symptoms option:selected').val().toLowerCase();
+
+    //If selection left blank ask for user to make a choice
+    if ($('#symptoms option:selected').text() === '' ){
+      $('#symptoms-id').text('Please make a choice');
+      return;
+    //If selection is glaucoma or muscle spasms convert into the proper string for the Strain API search
+    }else if ($userChoice === 'glaucoma'){
+      $userChoice = 'eye%20pressure'
+    }else if ($userChoice === 'muscle spasms'){
+      $userChoice = 'muscle%20spasms'
+    }
 
     //*** Strain API****//
     //------------------//
     //Strain API call for ailment
     $.ajax({
-      url: `https://strainapi.evanbusse.com/${key}/strains/search/effect/Insomnia`,
+      url: `https://strainapi.evanbusse.com/${key}/strains/search/effect/${$userChoice}`,
       method: "GET",
-    }).then(function (effect) {
-      // console.log(effect);
-
+    }).then(function(effect){
       //Storage array for randomly generated strains. This array holds objects returned from API call
       let strainRecID = []
 
@@ -72,7 +47,7 @@ var strainHistory = [];
         let randoPick = Math.floor(Math.random() * (effect.length - 1));
         //push the strain IDs to the strainRecID storage Array
         strainRecID.push(effect[randoPick])
-      }//console.log(strainRecID)
+      }
 
       //for loop to create a li element for strainRecId's length and write the name of the strain in each li element. Element id corresponds with strain ID#
       for (let i = 0; i < strainRecID.length; i++) {
@@ -86,10 +61,8 @@ var strainHistory = [];
 
 
         //Clear out any data in the flavors card and description div
-        $('#flavors').empty();
-        $('#posi-effects').empty();
-        $('#neg-effects').empty();
-        $('#strain-descrip').empty();
+        $('#strain-descrip, #flavors, #posi-effects, #neg-effects').empty();
+     
         //variable that corresponds with the strain ID of the clicked in strain name. This is used to make the next API calls.
         let $strainID = $(this).attr('id');
 
@@ -140,102 +113,91 @@ var strainHistory = [];
       });
     });
 
-    //*** Personal Remedies API ***//
+    //*** Personal Remedies(PR) API ***//
     //----------------------------//
     /************
+    /The list below are the cherry-picked ailments from PR that correspond with all the ailments returned from The Strain API
     ID#s - ailments
     ---------------
     18 - depression
     21 - stress
-    32 - cramps - no data from personal remedies, not in prProbIDs array
+    32 - muscle cramps/spasms - no data from PR, not in prProbID array
     58 - inflammation
     60 - lack of appetite
     144 - fatigue
     157 - glaucoma
     165 - headache
     190 - insomnia
+    213 - menstrual cramps  - no data from PR, not in prProbID array
     224 - pain
     229 - nausea
-    260 - seizures - no data from personal remedies, not in prProbIDs array
+    260 - seizures - no data from PR, not in prProbID array
     **************/
 
-
+    //PR ailment array
     const prProbID = [
-      { name: 'depression', id: 18 },
-      { name: 'stress', id: 21 },
-      // {name:'cramps', id: 32},
-      { name: 'inflammation', id: 58 },
-      { name: 'lack of appetite', id: 60 },
-      { name: 'fatigue', id: 144 },
-      { name: 'glaucoma', id: 157 },
-      { name: 'headache', id: 165 },
-      { name: 'insomnia', id: 190 },
-      { name: 'pain', id: 224 },
-      { name: 'nausea', id: 229 },
-      // {name:'seizures', id: 260},
+      {name:'depression', id: 18},
+      {name:'stress', id: 21},
+      {name:'inflammation', id: 58},
+      {name:'lack of appetite', id: 60},
+      {name:'fatigue', id: 144},
+      {name:'eye%20pressure', id: 157}, //glaucoma 
+      {name:'headache', id: 165},
+      {name:'insomnia', id: 190},
+      {name:'pain', id: 224},
+      {name:'nausea', id: 229},
     ];
+   
+    //Array with ailment remedies that the PR API returns as null
+    //List if herbal remedies for cramps found on https://herbalcommittea.com/blog/5%20Herbs%20for%20Menstrual%20Cramps%20&%20Period%20Symptoms
+    //List of herbal remedies for muscle spasms found on https://garrowwellnesscenter.com/top-5-best-natural-muscle-relaxers/
+    const noPrProb = [
+      {name: 'cramps', remedies: ['Chasteberry', 'Raspberry Leaf', 'Chamomile', 'Fennel', 'Wild Yam'] },
+      {name: 'muscle%20spasms', remedies: ['Magnesium', 'Lavender', 'Rosemary', 'Chamomile', 'Peppermint']},
+      {name: 'seizures', remedies: ['Due to the severity of seizures we recommend speaking to your doctor before taking any herbal supplements.'] }
+    ]
 
-    const cramps = ['Chasteberry', 'Raspberry Leaf', 'Chamomile', 'Fennel', 'Wild Yam'];
+    //Function to get the PR id# of the users ailment choices. Result is called on in the PR API call url
+    let  userProb = () => {
+      for (let i = 0; i < prProbID.length; i++) {
+        if ($userChoice === prProbID[i].name){
+          let prID = prProbID[i].id;
+          return prID;
+        }
+      } 
+    }
 
-    //Personal remedies API call
-
-    /* if (ailment selection === 'cramps'){
-      for (let i = 0; i < 5; i++) {
-        $('<li>').attr("id", `herb-${i + 1}`).text(cramps[i]).appendTo('#herbal');
+     //Loop through the prProb arr
+     for (let i = 0; i < prProbID.length; i++) {
+      //if the users choice and the PR ailment are equal, add the first 5 remedies returned from the PR API call
+      if ($userChoice === prProbID[i].name){
+        $.ajax({
+          url: `https://nutridigm-api-dev.azurewebsites.net/api/v1/nutridigm/suggest?subscriptionId=1&problemId=${userProb()}&fg2=k2`,
+          method: "GET",
+        }).then(function (herbs){
+          //For loop limits the response to 5 remedies and prevents errors if less than 5 are returned from the PR API
+          for (let i = 0; i < 5 && i < herbs.length; i++) {
+            //Append the results to the DOM
+            $('<li>').attr("id", `herb-${i + 1}`).text(herbs[i].fiDisplay).appendTo('#herbal')
+            //If medical cannabis is returned, it is not added to the list
+            if($(`#herb-${i + 1}`).text().toLowerCase() === 'medical cannabis'){
+              $(`#herb-${i + 1}`).remove();
+            }
+          }
+        });
       }
-    }if else (ailment selection === 'seizures'){
-      $('<li>').attr("id", `herb-1`).text('Due to the severity of seizures we recommend speaking to your doctor before taking any herbal supplements.').appendTo('#herbal');
-    }else{} */
-    $.ajax({
-      url: `https://nutridigm-api-dev.azurewebsites.net/api/v1/nutridigm/suggest?subscriptionId=1&problemId=190&fg2=k2`,
-      method: "GET",
-    }).then(function (herbs) {
-      // console.log(herbs)
-      //for loop that goes through the top 5 herbal remedy recommendations and writes them to the herbal remedies card
-      for (let i = 0; i < 5; i++) {
-        $('<li>').attr("id", `herb-${i + 1}`).text(herbs[i].fiDisplay).appendTo('#herbal');
+    }
+
+    //Loop through noPrProb
+    for (let i = 0; i < noPrProb.length; i++) {
+      //if the users choice is an ailment that has no data from the PR API then pull remedies from the PR noPrProb array and append to DOM
+      if ($userChoice === noPrProb[i].name){
+        for (let j = 0; j < noPrProb[i].remedies.length; j++) {
+          $('<li>').attr("id", `herb-${i + 1}`).text(noPrProb[i].remedies[j]).appendTo('#herbal');
+        }
       }
-    });
-
-
+    }
+ 
   });//End of submit button listener
 
-
-
-  // Local Storage by Dmitri Kent So
-  // this retrieves the stored list of strain ids
-  var storedStrains = JSON.parse(localStorage.getItem("storedStrains"))
-  console.log(storedStrains);
-  // Global variable to store strains that a user clicks on
-  if (storedStrains === null) {
-  } else {
-    strainHistory = storedStrains;
-    console.log(strainHistory);
-  }
-
-  // Local storage generating previous strain names as buttons DS
-  for (var i = 0; i < 10; i++) {
-    console.log("this worked");
-    $("#strain-history").prepend($("<button>").addClass("savedStrain").text(strainHistory[i]));
-    
-  }
-
-  // Clear button to empty sibling ("#strain-history") of text
-  $('#clear-btn').click(() => {
-    localStorage.clear();
-    $('#strain-history').empty();
-  });
-
-  // Event listener that uses searched strain id to display data
-  $(".savedStrain").on("click", function () {
-
-
-  })
-  // End of strain history button event DS
-
 });
-
-
-
-
-
