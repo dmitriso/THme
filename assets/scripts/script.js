@@ -1,61 +1,28 @@
 
 // Strain API ds
 $(document).ready(function () {
-
-  // var allEffects = [];
   //Strain API keys
   const key = "zBGPK18"; //Dmitris key. Nates is WDnZQMY
-  // // This function grabs all effects from the strain API
-  // function getEffects() {
-  //   var effectsURL = `https://strainapi.evanbusse.com/${key}/searchdata/effects`;
-  //   $.ajax({
-  //     url: effectsURL,
-  //     method: "Get"
-  //   }).then(function (effects) {
-  //     allEffects.push(effects);
-  //     // sets all effects for  user selection
-  //     // console.log(allEffects);
-  //     // depression
-  //     $("#checkbox1").val(allEffects[0][5].effect);
-  //     // insomnia
-  //     $("#checkbox2").val(allEffects[0][6].effect);
-  //     // muscl aches/pains
-  //     $("#checkbox3").val(allEffects[0][7].effect);
-  //     // stress
-  //     $("#checkbox4").val(allEffects[0][8].effect);
-  //     // menstrual cramps
-  //     // $("#checkbox5").val(allEffects[0][].effect);
-  //     // leg cramps
-  //     // $("#checkbox6").val(allEffects[0][].effect);
-  //     // poor appetites
-  //     $("#checkbox7").val(allEffects[0][13].effect);
-  //     // nausea 
-  //     $("#checkbox8").val(allEffects[0][14].effect);
-  //     // headache
-  //     $("#checkbox9").val(allEffects[0][16].effect);
-  //     // fatigue
-  //     $("#checkbox10").val(allEffects[0][21].effect);
-  //     // anti inflammation diet
-  //     $("#checkbox11").val(allEffects[0][29].effect);
-  //     // seizures
-  //     $("#checkbox12").val(allEffects[0][31].effect);
-  //     // muscle cramps
-  //     // $("#checkbox13").val(allEffects[0][].effect);
-  //   })
-  // }
-  // getEffects();
-  var aliments = ['depression', 'stress', 'inflammation', 'lack of appetite', 'fatigue', 'glaucoma', 'headache', 'insomnia', 'pain', 'nausea']
+
+  //Ailment selection dropdown
+  var aliments = ['depression', 'stress', 'cramps', 'inflammation', 'lack of appetite', 'fatigue', 'glaucoma', 'headache', 'insomnia', 'pain', 'nausea', 'seizures']
   for (let index = 0; index < aliments.length; index++) {
       $('<option>').text(aliments[index]).attr('id', aliments[index]).appendTo('#symptoms')
     };
+
   //Submit button event listener to kick off API calls
-  $("#submitBtn").on("click", function(){
+  $('#submitBtn').on('click', function(){
+
+    //Clear out any data on the DOM
+    $('#strain-list, #herbal, #strain-descrip, #flavors, #posi-effects, #neg-effects').empty();
+    //Variable that is set the selected ailment 
+    let $userChoice = $('#symptoms option:selected').val()
     
     //*** Strain API****//
     //------------------//
     //Strain API call for ailment
     $.ajax({
-      url: `https://strainapi.evanbusse.com/${key}/strains/search/effect/Insomnia`,
+      url: `https://strainapi.evanbusse.com/${key}/strains/search/effect/${$userChoice}`,
       method: "GET",
     }).then(function(effect){
       // console.log(effect);
@@ -79,10 +46,8 @@ $(document).ready(function () {
       $('li').on('click', function(e){
         e.preventDefault();
         //Clear out any data in the flavors card and description div
-        $('#flavors').empty();
-        $('#posi-effects').empty();
-        $('#neg-effects').empty();
-        $('#strain-descrip').empty();
+        $('#strain-descrip, #flavors, #posi-effects, #neg-effects').empty();
+     
         //variable that corresponds with the strain ID of the clicked in strain name. This is used to make the next API calls.
         let $strainID = $(this).attr('id');
 
@@ -123,14 +88,15 @@ $(document).ready(function () {
       });
     });
 
-    //*** Personal Remedies API ***//
+    //*** Personal Remedies(PR) API ***//
     //----------------------------//
     /************
+    /The list below are the cherry-picked ailments from PR that correspond with all the ailments returned from The Strain API
     ID#s - ailments
     ---------------
     18 - depression
     21 - stress
-    32 - cramps - no data from personal remedies, not in prProbIDs array
+    32 - cramps - no data from PR, not in prProbID array
     58 - inflammation
     60 - lack of appetite
     144 - fatigue
@@ -139,14 +105,13 @@ $(document).ready(function () {
     190 - insomnia
     224 - pain
     229 - nausea
-    260 - seizures - no data from personal remedies, not in prProbIDs array
+    260 - seizures - no data from PR, not in prProbID array
     **************/
 
-
-   const prProbID = [
+    //PR ailment array
+    const prProbID = [
       {name:'depression', id: 18},
       {name:'stress', id: 21},
-      // {name:'cramps', id: 32},
       {name:'inflammation', id: 58},
       {name:'lack of appetite', id: 60},
       {name:'fatigue', id: 144},
@@ -155,33 +120,55 @@ $(document).ready(function () {
       {name:'insomnia', id: 190},
       {name:'pain', id: 224},
       {name:'nausea', id: 229},
-      // {name:'seizures', id: 260},
     ];
    
-   const cramps = ['Chasteberry', 'Raspberry Leaf', 'Chamomile', 'Fennel', 'Wild Yam'];
+    //List if herbal remedies for cramps found on https://herbalcommittea.com/
+    const cramps = ['Chasteberry', 'Raspberry Leaf', 'Chamomile', 'Fennel', 'Wild Yam'];
 
-    //Personal remedies API call
-
-    /* if (ailment selection === 'cramps'){
+    //Function to get the PR id# of the users ailment choices. Result is called on in the PR API call url
+    let  userProb = () => {
+      for (let i = 0; i < prProbID.length; i++) {
+        if ($userChoice === prProbID[i].name){
+          let prID = prProbID[i].id;
+          return prID;
+        }
+      } 
+    }
+ 
+    //If selection left blank ask for user to make a choice
+    if ($('#symptoms option:selected').attr('id') === 'symptoms-id' ){
+      $('#symptoms-id').text('Please make a choice');
+    //If cramps chosen return remedies from cramps array
+    }else if ($userChoice === 'cramps'){
       for (let i = 0; i < 5; i++) {
         $('<li>').attr("id", `herb-${i + 1}`).text(cramps[i]).appendTo('#herbal');
       }
-    }if else (ailment selection === 'seizures'){
+    //If seizures chosen return message
+    }else if($userChoice === 'seizures'){
       $('<li>').attr("id", `herb-1`).text('Due to the severity of seizures we recommend speaking to your doctor before taking any herbal supplements.').appendTo('#herbal');
-    }else{} */
-    $.ajax({
-      url: `https://nutridigm-api-dev.azurewebsites.net/api/v1/nutridigm/suggest?subscriptionId=1&problemId=190&fg2=k2`,
-      method: "GET",
-    }).then(function (herbs) {
-      // console.log(herbs)
-      //for loop that goes through the top 5 herbal remedy recommendations and writes them to the herbal remedies card
-      for (let i = 0; i < 5; i++) {
-        $('<li>').attr("id", `herb-${i + 1}`).text(herbs[i].fiDisplay).appendTo('#herbal');
-      }
-    });
+    }
 
-});//End of submit button listener
-  
+    //Loop through the prProb arr
+    for (let i = 0; i < prProbID.length; i++) {
+      //if the users choice and the PR ailment are equal, add the first 5 remedies returned from the PR API call
+      if ($userChoice === prProbID[i].name){
+        $.ajax({
+          url: `https://nutridigm-api-dev.azurewebsites.net/api/v1/nutridigm/suggest?subscriptionId=1&problemId=${userProb()}&fg2=k2`,
+          method: "GET",
+        }).then(function (herbs){
+          for (let i = 0; i < 5; i++) {
+            $('<li>').attr("id", `herb-${i + 1}`).text(herbs[i].fiDisplay).appendTo('#herbal');
+            //If medical cannabis is returned, it is not added to the list
+            if($(`#herb-${i + 1}`).text().toLowerCase() === 'medical cannabis'){
+              console.log('sup')
+              $(`#herb-${i + 1}`).remove();
+            }
+          }
+        });
+      }
+    }
+
+  });//End of submit button listener
 
 });
 
