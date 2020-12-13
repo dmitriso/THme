@@ -12,8 +12,6 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
   <link rel="stylesheet" href="assets\css\styles.css" type="text/css">
   <link rel="stylesheet" href="assets\css\style.css" type="text/css">
-
-
   <title>THme</title>
 </head>
 
@@ -21,17 +19,30 @@
 
 <body>
   <ul class="menu">
-    <li class="">
-      <h3 class='main-title'>THme</h3>
+    <li class="menu">
+      <h1 class='main-title'>THme</h1>
     </li>
-    <li>
+    <li class="menu">
       <img class='main-logo' src="assets/images/THme.png">
     </li>
   </ul>
 
+<!--MAIN PAGE-->
+<div class="card callout" id="intro">
+  <div class="card-divider"> 
+    Welcome to THme
+  </div>
+  <div class="card-section" id="intro-section">
+    <div>
+    <h3>Cannabis Recommendation Application</h3>
+    <p>If you are a medical Cannabis user, let us pick provide some recommendations based on your choices!</p>
+    </div>
+    <img class='home-img' src="assets/images/THme.png">
+  </div>
+</div>
+
   <!--AGE VERFICATION-->
-  <div class="callout age-ver" data-closable>
-    </button>
+  <div class="card callout age-ver" id="age-ver">
     <div class="card-divider">
       Age Verfication
     </div>
@@ -51,7 +62,7 @@
           <option id="years-ver"></option>
         </select>
       </label>
-      <input type="submit" class="button" value="Submit" id="agebtn">
+      <input type="submit" class="button success" value="Submit" id="agebtn">
     </div>
   </div>
 
@@ -62,7 +73,7 @@
     </div>
     <div class="card-section">
       <p>Warning Text Goes Here</p>
-      <input type="submit" class="button" value="Continue" id="warningbtn">
+      <input type="submit" class="button success" value="Continue" id="warningbtn">
     </div>
   </div>
 
@@ -104,20 +115,28 @@
           <div>
             <p id="strain-descrip"></p><!-- moved id down form parent div -nk-->
             <div>
-              <button type="button" class="button" id="save-btn" style="display: none">Save Strain</button><!-- added save button -nk -->
+              <button type="button" class="button success" id="save-btn" style="display: none">Save Strain</button><!-- added save button -nk -->
             </div>
             <!--STRAIN DESCRIPTION-->
           </div>
         </div>
       </div>
     </div>
-  </div>
+     <!-- STRAIN SEARCH HISTORY DS -->
+    <div id="savedstrain">
+    <select id="saved-strains"> <!-- created dropdown and added 2 buttons - nk-->
+    <option id="saved-strains-id" value="saved-strains-value">Your Saved Strains</option>
+    </select>
+    <button id="info-btn" class="button success">Display Info</button>
+    <button id="clear-btn" class="button success">Clear History</button>
+    </div>
+</div>
   <!--FLAVOR-EFFECTS SECTION-->
 
   <!--FLAVOR/HERBAL EFFECTS-->
   <div class="output callout" id="effectsbox1">
     <div class="card effects"><div>
-      <button type="button" class="button" id="save-btn" style="display: none">Save Strain</button><!-- added save button -nk -->
+      <button type="button" class="button success" id="save-btn" style="display: none">Save Strain</button><!-- added save button -nk -->
     </div>
       <div class="card-divider">
         <!--TITLE FOR FLAVORS-->
@@ -160,14 +179,7 @@
   </div>
   <!--END OF EFFECTS SECTION-->
 
-  <!-- STRAIN SEARCH HISTORY DS -->
-  <div id="savedstrain">
-    <select id="saved-strains"> <!-- created dropdown and added 2 buttons - nk-->
-      <option id="saved-strains-id" value="saved-strains-value">Your Saved Strains</option>
-    </select>
-  <button id="info-btn" class="button">Display Info</button>
-  <button id="clear-btn" class="button">Clear History</button>
-</div>
+ 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="./assets/scripts/script.js"></script>
