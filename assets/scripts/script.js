@@ -202,10 +202,14 @@ $(document).ready(function () {
 
         // Local Storage by Dmitri Kent So
         // this will set an array of user clicked strain ids into local storage
+        $('#save-btn').on('click', function(e){
+        e.preventDefault;
         var $strainName = {name: $(this).text(), id: $strainID};
         strainHistory.push($strainName);
         localStorage.setItem("storedStrains", JSON.stringify(strainHistory));
-        console.log(strainHistory);
+        console.log($strainName);
+        })
+        
 
       });//End of event listener for strain details
 
