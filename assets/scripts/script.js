@@ -18,13 +18,14 @@ $(document).ready(function () {
   const aliments = ['Cramps', 'Depression', 'Fatigue', 'Glaucoma', 'Headache',  'Inflammation', 'Insomnia', 'Lack of Appetite', 'Muscle Spasms', 'Nausea', 'Pain', 'Seizures', 'Stress']
   
   //Loop to add each ailment to the dropdown
-  for (let index = 0; index < aliments.length; index++) {
-      $('<option>').text(aliments[index]).attr('id', aliments[index]).appendTo('#symptoms')
+  for (let i = 0; i < aliments.length; i++) {
+      $('<option>').text(aliments[i]).attr('id', aliments[i]).appendTo('#symptoms')
     };
 
   //Function that calls Strain API and adds the returned data to the DOM
+  //Called in button click event listeners
   const strainDetails = ($strainID) => {
-    //Clear out any data in the flavors card and description div
+    //Clear out any data in the flavors cards and description div
     $('#strain-descrip, #flavors, #posi-effects, #neg-effects' ).empty();
 
     //API call to get the flavors of the chosen strain
@@ -191,7 +192,7 @@ $(document).ready(function () {
         }
       }//End custom results 
   
-      //On click listener for the selecting strains in the strain name list
+      //On click listener for the user to select strains in the strain name list to get more details 
       $('li').on('click', function (e) {
         e.preventDefault();
         //variable that corresponds with the strain ID of the clicked in strain name. This is used to make the next API calls.
@@ -246,4 +247,5 @@ $(document).ready(function () {
     $('#saved-strains').empty();
     storedStrains = [];
   });//End of clear button event listener
+  
 });
