@@ -16,7 +16,6 @@ footer {
   color: white;
 }
 
-
 .card {
   margin-left: auto;
   margin-right: auto;
@@ -67,6 +66,10 @@ footer {
   margin-top: 10px;
 }
 
+#intro-body {
+  padding-right: 2px;
+}
+
 #warningbox, #symptombox{
   margin-top: 10px;
 }
@@ -74,6 +77,15 @@ footer {
 #userbox {
   width: 750px;
 }
+
+#strain-list li {
+  cursor: pointer;
+}
+
+#strain-list{
+  margin: 0
+}
+
 
 li{
     list-style: none;

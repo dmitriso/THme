@@ -27,8 +27,18 @@ Along with cannabis strains, a selection of herbal home remedies are also recomm
 
 ### Screenshots:
 <hr />
-<details
-
+<details>
+    <!--INDEX PAGE IMAGES-->
+	<tr>
+    	<td>
+            <h1>Full Application Demo</h1>
+			<img width="400" alt="400 index" src="assets/images/THmeDemoFull.gif">
+		</td>
+		<td>
+            <h1>Save Strains Demo</h1>
+			<img width="400" alt="400 index" src="assets/images/THmeLocalStorage.gif">
+		</td>
+	</tr>
 <summary></summary>
 
 </details>
