@@ -34,8 +34,9 @@
 <hr />
 <p>Warning we are not medical professionals! This app is not meant to treat medical illnesses.</p>
 
-<p>This app has been created between four full stack developer students. Using the tools we've learned and/or self taught, we've built this app to recommend medical cannabis strains for the user's ailments. Based off the user symptoms, certain medicinal cannabis strains are recommended. The recommendations for medical cannabis are selected and pulled from a server side API (The Strain API).
-Along with cannabis strains, a selection of herbal home remedies are also recommended to the user. Those holistic remedies are sourced and pulled from another server side API (Nutridigm API).</p>
+<p>This app has been created between four full-stack developer students calling themselves GreenLight. Using the tools we've learned and/or self-taught, we've built this app to recommend medical cannabis strains for the user's ailments. Based on the user symptoms, certain medicinal cannabis strains are recommended. The recommendations for medical cannabis are selected and pulled from a server-side API (The Strain API).
+Along with cannabis strains, a selection of herbal home remedies is also recommended to the user. Those holistic remedies are sourced and pulled from another server-side API (Personal Remedies API).
+</p>
 
 ### HTML and CSS
 When the user first enters the site, it is greeted with a prompt displaying what THme is about, a cannabis recommendation application. They then can scroll down to the age verification, where they can select their birthday. If no birthday is selected, it sends an alert again displaying that the user must be 21 or older to proceed. Next, the user is prompted with a card displaying that this application is strictly recommendations on cannabis strains and herbal remedies. Proceeding, the users are faced with cards in a cascading effect that displays the steps of the application. You select an ailment, a strain name, a strain description displays, and then below users can see the different effects, profiles, and herbal remedies based on their choices. We went with this layout for simplicity and logical reasoning on where certain cards are placed. The color pallet and background image is in inspiration to the cannabis industry and the medicine that it provides. The application displays an easy to use interface that every patient would be able to navigate through.
@@ -52,7 +53,9 @@ At this time the Personal Remedies API is also called to give recommendations on
 
 The presented five strain recommendations are all active to being clicked on byu an event listener. When a strain is clicked on the flavors, positive and negative effects, and strain description will appear in the DOM. The user is allowed to save the selected strain to local storage. 
 
-When a user originally loads the page, if any strains are saved in local storage 
+When a user originally loads the page, if any strains are saved in local storage they are dynamically added to the saved strains dropdown. If a user saves a new strain it is appended to this list. If a uer wants to pull up the information about a saved strain, they need to select it in the drop down and click the 'Display Saved Strain info' button. This will add that strains information to the DOM. 
+
+Lastly, a "Clear Saved Strain History" button is on the screen for the user to clear out the list of saved strains in case the list gets too long or they just want to clean house.
 
 ## Screenshots
 

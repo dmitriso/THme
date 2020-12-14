@@ -51,7 +51,7 @@ else{
     $('#intro').toggle(500);
     $('#warningbox').delay(500).toggle(500);
 }
-console.log(age); // AGE IS INPUT DATE - 1970
+// AGE IS INPUT DATE - 1970
 });
 
 //WARNING BUTTON
