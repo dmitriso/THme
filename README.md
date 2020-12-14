@@ -34,10 +34,12 @@
 <hr />
 <p>Warning we are not medical professionals! This app is not meant to treat medical illnesses.</p>
 
-<p>This app has been created between four full stack developer students. Using the tools we've learned and/or self taught, we've built this app to recommend medical marajauna strains for the user's ailments. Based off the user symptoms, certain medicinal cannabis strains are reccomended. The recommendations for medical marijauna are selected and pulled from a server side API (The Strain API).
+<p>This app has been created between four full stack developer students. Using the tools we've learned and/or self taught, we've built this app to recommend medical cannabis strains for the user's ailments. Based off the user symptoms, certain medicinal cannabis strains are recommended. The recommendations for medical cannabis are selected and pulled from a server side API (The Strain API).
 Along with cannabis strains, a selection of herbal home remedies are also recommended to the user. Those holistic remedies are sourced and pulled from another server side API (Nutridigm API).</p>
 
 ### HTML and CSS
+When the user first enters the site, it is greeted with a prompt displaying what THme is about, a cannabis recommendation application. They then can scroll down to the age verification, where they can select their birthday. If no birthday is selected, it sends an alert again displaying that the user must be 21 or older to proceed. Next, the user is prompted with a card displaying that this application is strictly recommendations on cannabis strains and herbal remedies. Proceeding, the users are faced with cards in a cascading effect that displays the steps of the application. You select an ailment, a strain name, a strain description displays, and then below users can see the different effects, profiles, and herbal remedies based on their choices. We went with this layout for simplicity and logical reasoning on where certain cards are placed. The color pallet and background image is in inspiration to the cannabis industry and the medicine that it provides. The application displays an easy to use interface that every patient would be able to navigate through.
+
 
 ### JavaScript Functionality
 The user is presented with a home screen that asks for age verification. The options for month, day, & year are generated dynamically via JavaScript. Once the user inputs their birth date, it is then converted into unix time and the arithmetic is done to verify the users age. UNder 21 they are presented with an alert that they must be 21 to enter otherwise the user is allowed to proceed. 
