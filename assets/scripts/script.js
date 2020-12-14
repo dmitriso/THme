@@ -247,5 +247,22 @@ $(document).ready(function () {
     $('#saved-strains').empty();
     storedStrains = [];
   });//End of clear button event listener
+
+  // Toggle function DS
+  // must give the button an id for this function
+  
+  $(function(){
+    $("#remediesBtn").click(function(){
+      $this.val()== "display" ? showRemedies() : hideRemedies();
+    });
+  });
+
+  function showRemedies() {
+    $("#remediesBtn").val("pause");
+  }
+
+  function hideRemedies() {
+    $("#remediesBtn").val("play");
+  }
   
 });
