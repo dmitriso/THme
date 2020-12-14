@@ -97,6 +97,8 @@ input:checked~.switch-paddle{
 
 
 
+
+
 /* screen is mobile, goes to mobile width */
 @media only screen and (max-width: 300px){
   #userbox{
