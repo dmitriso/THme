@@ -18,15 +18,16 @@
 <!--NAV BAR-->
 
 <body>
+  <nav class="navigation">
   <ul class="menu">
     <li class="menu">
       <h1 class='main-title'>THme</h1>
     </li>
     <li class="menu">
-      <img class='main-logo' src="assets/images/THme.png">
+      <img class='main-logo' src="assets/images/THme-nav.png">
     </li>
   </ul>
-
+</nav>
 <!--MAIN PAGE-->
 <div class="card callout" id="intro">
   <div class="card-divider"> 
@@ -72,7 +73,7 @@
       Warning
     </div>
     <div class="card-section">
-      <p>Warning Text Goes Here</p>
+      <p>All recommendations are just suggestions. Please speak with your doctor before trying any medical cannabis or herbal supplements.</p>
       <input type="submit" class="button success" value="Continue" id="warningbtn">
     </div>
   </div>
@@ -80,24 +81,21 @@
   <!--SYMPTOM SELECTION-->
   <div class="card callout" id="symptombox">
     <div class="card-divider">
-      Pick Symptoms
+      Aliment Selection
     </div>
     <div class="card-section">
-      <h4>Please Choose a Symptom</h4>
-      <label>Symptoms
+      <h4>Please Choose an Aliment</h4>
+      <label>Aliment
         <select id="symptoms">
           <option id="symptoms-id" value="symptoms-value"></option>
         </select>
       </label>
-      <button type="button" class="success button" id="submitBtn">Save</button>
+      <button type="button" class="success button" id="submitBtn">Search</button>
     </div>
   </div>
 
   <!--USER OUTPUT-->
   <div class="card" id="userbox">
-    <div class="card-divider">
-      Your Recommendations
-    </div>
     <!--STRAIN OUTPUT-->
     <div class="output">
       <div class="card effects card-properties">
@@ -178,7 +176,9 @@
     </div>
   </div>
   <!--END OF EFFECTS SECTION-->
-
+<footer>
+<p>Created By GreenLight&#169</p>
+</footer>
  
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
