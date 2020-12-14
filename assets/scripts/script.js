@@ -1,23 +1,22 @@
 $(document).ready(function () {
   
-  // Local Storage by Dmitri Kent So
-  // this retrieves the stored list of strain ids
-  var strainHistory = [];
-  var storedStrains = JSON.parse(localStorage.getItem("storedStrains"))
-  console.log(storedStrains);
+  // Get Local Storage by Dmitri Kent So
+  // Retrieves the stored strains and their ids from local stor
+  let storedStrains = JSON.parse(localStorage.getItem('storedStrains'))
   // Global variable to store strains that a user clicks on
   if (storedStrains === null) {
-  } else {
-    strainHistory = storedStrains;
-    console.log(strainHistory);
-  }
+    storedStrains = [];
+  } 
+  //for each strain in local stor, add it to the DOM as dropdown options
+  for (let i = 0; i < storedStrains.length; i++) {
+    $('<option>').attr('id', storedStrains[i].id).text(storedStrains[i].name).appendTo('#saved-strains')
+  };
 
-  // localStorage.clear();
   //Strain API keys
   const key = "zBGPK18"; //Dmitris key. Nates is WDnZQMY
-
   //Ailment selection dropdown creation
-  var aliments = ['Cramps', 'Depression', 'Fatigue', 'Glaucoma', 'Headache',  'Inflammation', 'Insomnia', 'Lack of Appetite', 'Muscle Spasms', 'Nausea', 'Pain', 'Seizures', 'Stress']
+  const aliments = ['Cramps', 'Depression', 'Fatigue', 'Glaucoma', 'Headache',  'Inflammation', 'Insomnia', 'Lack of Appetite', 'Muscle Spasms', 'Nausea', 'Pain', 'Seizures', 'Stress']
+  
   //Loop to add each ailment to the dropdown
   for (let index = 0; index < aliments.length; index++) {
       $('<option>').text(aliments[index]).attr('id', aliments[index]).appendTo('#symptoms')
@@ -26,7 +25,8 @@ $(document).ready(function () {
   //Function that calls Strain API and adds the returned data to the DOM
   const strainDetails = ($strainID) => {
     //Clear out any data in the flavors card and description div
-    $('#strain-descrip, #flavors, #posi-effects, #neg-effects').empty();
+    $('#strain-descrip, #flavors, #posi-effects, #neg-effects' ).empty();
+
     //API call to get the flavors of the chosen strain
     $.ajax({
       url: `https://strainapi.evanbusse.com/${key}/strains/data/flavors/${$strainID}`,
@@ -58,21 +58,23 @@ $(document).ready(function () {
       url: `https://strainapi.evanbusse.com/${key}/strains/data/desc/${$strainID}`,
       method: "GET",
     }).then(function (desc) {
+
       //Writes the description of the strain to the description div
       $('#strain-descrip').text(desc.desc)
     });
   }// end of strainDetails()
 
-  //Submit button event listener to kick off API calls
+  //*** Submit button event listener that kicks off API calls ***//
   $('#submitBtn').on('click', function(){
 
-    //Clear out any data on the DOM
-    $('#strain-list, #herbal, #strain-descrip, #flavors, #posi-effects, #neg-effects').empty();
+    //Clear out any data on the DOM & hide the save strain button
+    $('#strain-list, #herbal, #strain-descrip, #flavors, #posi-effects, #neg-effects, #descrip-h3').empty();
+    $('#save-btn').css('display', 'none');
 
     //Variable that is set to the user selected ailment 
     let $userChoice = $('#symptoms option:selected').val().toLowerCase();
 
-    //If selection left blank ask for user to make a choice
+    //If ailment selection left blank ask for user to make a choice
     if ($('#symptoms option:selected').text() === '' ){
       $('#symptoms-id').text('Please make a choice');
       return;
@@ -84,7 +86,6 @@ $(document).ready(function () {
     }
 
     //*** Strain API****//
-    //------------------//
     //Strain API call for ailment
     $.ajax({
       url: `https://strainapi.evanbusse.com/${key}/strains/search/effect/${$userChoice}`,
@@ -107,7 +108,6 @@ $(document).ready(function () {
         }
 
       //*** Personal Remedies(PR) API ***//
-      //----------------------------//
       /************
       /The list below are the cherry-picked ailments from PR that correspond with all the ailments returned from The Strain API
       ID#s - ailments
@@ -127,7 +127,7 @@ $(document).ready(function () {
       260 - seizures - no data from PR, not in prProbID array
       **************/
 
-      //PR ailment array
+      //PR ailment array used for the API call to PR
       const prProbID = [
         {name:'depression', id: 18},
         {name:'stress', id: 21},
@@ -158,9 +158,9 @@ $(document).ready(function () {
             return prID;
           }
         } 
-      }
+      }//End of userProb()
 
-      //Loop through the prProb arr
+      //Loop through the prProb arr for API results
       for (let i = 0; i < prProbID.length; i++) {
         //if the users choice and the PR ailment are equal, add the first 5 remedies returned from the PR API call
         if ($userChoice === prProbID[i].name){
@@ -179,9 +179,9 @@ $(document).ready(function () {
             }
           });
         }
-      }
+      }//End of PR API call
 
-      //Loop through noPrProb
+      //Loop through noPrProb for custom results
       for (let i = 0; i < noPrProb.length; i++) {
         //if the users choice is an ailment that has no data from the PR API then pull remedies from the PR noPrProb array and append to DOM
         if ($userChoice === noPrProb[i].name){
@@ -189,73 +189,61 @@ $(document).ready(function () {
             $('<li>').attr("id", `herb-${i + 1}`).text(noPrProb[i].remedies[j]).appendTo('#herbal');
           }
         }
-      }//End of Personal Remedies API call
+      }//End custom results 
   
-      //On click listener for the strain names in the strain name list
+      //On click listener for the selecting strains in the strain name list
       $('li').on('click', function (e) {
         e.preventDefault();
         //variable that corresponds with the strain ID of the clicked in strain name. This is used to make the next API calls.
         let $strainID = $(this).attr('id');
-
-        strainDetails($strainID);
-        $('#save-btn').css('display', 'block')
-
-        // Local Storage by Dmitri Kent So
-        // this will set an array of user clicked strain ids into local storage
-        $('#save-btn').on('click', function(e){
-        e.preventDefault;
-        var $strainName = {name: $(this).text(), id: $strainID};
-        strainHistory.push($strainName);
-        localStorage.setItem("storedStrains", JSON.stringify(strainHistory));
-        console.log($strainName);
-        })
+        let $strainName = $(this).text();
         
+        //Call function that adds flavors, posi & neg effects, & descrip to the DOM 
+        strainDetails($strainID);
+        //Show save button
+        $('#save-btn').css('display', 'block');
+        //Adds a heading for the selected strain
+        $('h3').attr('id', 'descrip-h3').text($strainName).insertBefore('#strain-descrip');
 
-      });//End of event listener for strain details
-
-    
-
+        // Set Local Storage by Dmitri Kent So
+        // Event listener for save button click to set local stor
+        $('#save-btn').off().on('click', function(e){
+          e.preventDefault;
+          //Object with chosen strain name and ID
+          var $strainObj = {name: $strainName, id: $strainID};
+          //That object is pushed tot he local stor array
+          storedStrains.push($strainObj);
+          //Local stor set
+          localStorage.setItem('storedStrains', JSON.stringify(storedStrains));
+          //Add the chosen stain to the dropdown
+          $('<option>').attr('id', $strainObj.id).text($strainObj.name).appendTo('#saved-strains')
+        });//End of save button event listener
+      });//End of provided strain selection event listener
     });//End of initial Strain API call
-  });//End of submit button listener
+  });//End of submit button event listener
 
-  for (let i = 0; i < strainHistory.length; i++) {
-    $('<option>').attr('id', strainHistory[i].id).text(strainHistory[i].name).appendTo('#saved-strains')
-  };
-
+  //On click listener for the button that displays the info of the selected strain in local stor
   $('#info-btn').on('click', function(e) {
     e.preventDefault;
+    //Variables to get the selected strains name & id
     let $strainID = $('#saved-strains option:selected').attr('id');
-    strainDetails($strainID);
+    let $strainName = $('#saved-strains option:selected').text();
 
-  })
-  // Clear button to empty sibling ("#strain-history") of text
-  $('#clear-btn').click(() => {
+    //If a strain is not selected, append the DOM to ask the user to make a selection
+    if($strainID === 'saved-strains-id'){
+      $('#saved-strains option:selected').text('Please make a selection!');
+      return;
+    }
+
+    //Add a heading with the name of the strain that was selected
+    $('h3').attr('id' ,'descrip-h3').text($strainName).insertBefore('#strain-descrip');
+    strainDetails($strainID);
+  });//End of display info button event listener
+
+  // Clear button to clear local storage, empty the dropdown, and clear the array for local stor
+  $('#clear-btn').click( () => {
     localStorage.clear();
     $('#saved-strains').empty();
-  });
-
-
-  // // Add stored strains to a dropdown for user
-  // for (let i = 0; i < strainHistory.length; i++) {
-  //   $('<option>').attr('id', i).text(strainHistory[i]).appendTo('#saved-strains')
-  // };
-
-  // // Clear button to empty sibling ("#strain-history") of text
-  // $('#clear-btn').click(() => {
-  //   localStorage.clear();
-  //   $('#saved-strains').empty();
-  // });
-
-  // $('option').on("click", function (e) {
-  //   e.preventDefault;
-
-  // })
-
-  // // Event listener that uses searched strain id to display data
-  // $('option').on("click", function (e) {
-  //   e.preventDefault;
-
-  // })
-  // End of strain history button event DS
-
+    storedStrains = [];
+  });//End of clear button event listener
 });
