@@ -25,12 +25,12 @@ var output = date.getFullYear() + '/' +
     (currentday<10 ? '0' : '') + currentday;
 
 //VERIFICATION BUTTONS AND CASCADING ELEMENTS
-$('#warningbox').addClass('hide');
-$('#symptombox').addClass('hide');
-$('#userbox').addClass('hide');
-$('#effectsbox1').addClass('hide');
-$('#effectsbox2').addClass('hide');
-$('#savedstrain').addClass('hide');
+$('#warningbox').hide();
+$('#symptombox').hide();
+$('#userbox').hide();
+$('#effectsbox1').hide();
+$('#effectsbox2').hide();
+$('#savedstrain').hide();
 //AGE VERIFICATION
 $('#agebtn').click(function (e) { 
     e.preventDefault();
@@ -47,8 +47,9 @@ if (age < 21 || ''){
     alert("Sorry, Must Be 21 or Older to Continue")
 }
 else{
-    $('.age-ver').attr('class', 'hide');
-    $('#warningbox').removeClass('hide');
+    $("#age-ver").toggle(500);
+    $('#intro').toggle(500);
+    $('#warningbox').delay(500).toggle(500);
 }
 console.log(age); // AGE IS INPUT DATE - 1970
 });
@@ -56,10 +57,10 @@ console.log(age); // AGE IS INPUT DATE - 1970
 //WARNING BUTTON
 $('#warningbtn').click(function (e) { 
     e.preventDefault();
-    $('#warningbox').attr('class', 'hide')
-    $('#symptombox').removeClass('hide');
-    $('#userbox').removeClass('hide');
-    $('#effectsbox1').removeClass('hide');
-    $('#effectsbox2').removeClass('hide');
-    $('#savedstrain').removeClass('hide');
+    $('#warningbox').toggle(500);
+    $('#symptombox').delay(500).toggle(500);
+    $('#userbox').delay(500).toggle(500);
+    $('#effectsbox1').delay(500).toggle(500);
+    $('#effectsbox2').delay(500).toggle(500);
+    $('#savedstrain').delay(500).toggle(500);
 });
