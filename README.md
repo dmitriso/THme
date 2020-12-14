@@ -1,6 +1,6 @@
 # THme
 
-### GreenLight Project-1
+## GreenLight Project-1
 <hr />
 <p>Team-Members:</p>
 <ul>
@@ -11,20 +11,33 @@
 </ul>
 
 
+## Table of Contents
+ * [Description](#description)
+    + [User Story](#user-story)
+    + [Product](#product)
+    + [HTML and CSS](#html-and-css)
+    + [Javascript functionality](#javascript-functionality)
+  * [Screenshots](#screenshots)
+  * [Technologies and Credits](#technologies-and-credits)
+  * [License](#license)
+<hr />
 
-### User Story:
+
+## Description
+
+### User Story
 <hr />
 <p>“As someone with an ailment looking for relief, I want a website  that’ll give me recommendations for strains suited for my symptom. When I am presented with a list of recommended strains I can click on each of the names. When selected, I am presented with the flavor profiles and descriptions of of each strain. I am also presented with a list of holistic home remedies, to pair with my strains.”</p>
 
 
-### Product Desciption:
+### Product
 <hr />
 <p>Warning we are not medical professionals! This app is not meant to treat medical illnesses.</p>
 
 <p>This app has been created between four full stack developer students. Using the tools we've learned and/or self taught, we've built this app to recommend medical marajauna strains for the user's ailments. Based off the user symptoms, certain medicinal cannabis strains are reccomended. The recommendations for medical marijauna are selected and pulled from a server side API (The Strain API).
 Along with cannabis strains, a selection of herbal home remedies are also recommended to the user. Those holistic remedies are sourced and pulled from another server side API (Nutridigm API).</p>
 
-### HTML & CSS
+### HTML and CSS
 
 ### JavaScript Functionality
 The user is presented with a home screen that asks for age verification. The options for month, day, & year are generated dynamically via JavaScript. Once the user inputs their birth date, it is then converted into unix time and the arithmetic is done to verify the users age. UNder 21 they are presented with an alert that they must be 21 to enter otherwise the user is allowed to proceed. 
@@ -35,10 +48,15 @@ First, the user is given a dropdown with a list of ailments to choose from. This
 
 At this time the Personal Remedies API is also called to give recommendations on what herbal supplements will help the user for the chosen ailment. Three of the ailments return null so added custom answers had to be added. The user is not presented with the results right away. They are provided a button that, if they chose to see the results, will add the results to the DOM. 
 
-The presented five strain recommendations are all active to being clicked on byu an event listener. When a strain is clicked on the flavors, positive and negative effects, and strain description will appear in the DOM. 
+The presented five strain recommendations are all active to being clicked on byu an event listener. When a strain is clicked on the flavors, positive and negative effects, and strain description will appear in the DOM. The user is allowed to save the selected strain to local storage. 
 
-### Screenshots:
+When a user originally loads the page, if any strains are saved in local storage 
+
+## Screenshots
+
 <hr />
+
+###### click to expand
 <details>
     <!--INDEX PAGE IMAGES-->
 	<tr>
@@ -56,7 +74,7 @@ The presented five strain recommendations are all active to being clicked on byu
 </details>
 <p></p>
 
-### Technologies & Credits:
+## Technologies and Credits
 <hr />
 
 [Sass](https://sass-lang.com/guide) (CSS-Preprocessor)
@@ -72,9 +90,7 @@ The presented five strain recommendations are all active to being clicked on byu
 [Garrow-Wellness-Center](https://garrowwellnesscenter.com/top-5-best-natural-muscle-relaxers/) (Web-Source)
 
 
-
-
-### Deployed URL's:
+## Deployed URLs
 <hr />
 
 [GitHub-Repository](https://github.com/dmitriso/THme)
@@ -82,4 +98,22 @@ The presented five strain recommendations are all active to being clicked on byu
 [THme-App](https://dmitriso.github.io/THme/)
 
 
-
+## License
+<hr />
+MIT License
+Copyright (c) 2020 GreenLight
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
