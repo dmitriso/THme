@@ -247,5 +247,27 @@ $(document).ready(function () {
     $('#saved-strains').empty();
     storedStrains = [];
   });//End of clear button event listener
-  
+
+
+  // TOGGLE BUTTON DS
+  // Toggle button function that hides and shows remedies if user chooses either
+  $(function(){
+    $('#remedy-btn').click(function() {
+       // if the play button value is 'play', call the play function
+       // otherwise call the pause function
+       $(this).val() == 'show' ? showInit() : hideInit();
+    });
+});
+
+function showInit() {
+    $('#remedy-btn').val('hide');
+    console.log('this hides the remedies');
+    $('#herbal').hide();
+}
+
+function hideInit() {
+    $('#remedy-btn').val('show');
+    console.log('this shows the remedies');
+    $('#herbal').show();
+}
 });
