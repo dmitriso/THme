@@ -210,7 +210,7 @@ $(document).ready(function () {
         $('#save-btn').off().on('click', function(e){
           e.preventDefault;
           //Object with chosen strain name and ID
-          var $strainObj = {name: $strainName, id: $strainID};
+          let $strainObj = {name: $strainName, id: $strainID};
           //That object is pushed tot he local stor array
           storedStrains.push($strainObj);
           //Local stor set
