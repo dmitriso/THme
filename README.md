@@ -2,7 +2,7 @@
 
 ### GreenLight Project-1
 <hr />
-<p>Group of concerned gentlemen:</p>
+<p>Team-Members:</p>
 <ul>
 <li>Nate King</li>
 <li>John Hauth</li>
@@ -32,11 +32,12 @@ Along with cannabis strains, a selection of herbal home remedies are also recomm
 <summary></summary>
 
 </details>
+<p></p>
 
-### Technologies & Credits
+### Technologies & Credits:
+<hr />
 
 [Sass](https://sass-lang.com/guide) (CSS-Preprocessor)
-
 
 [Foundation](https://get.foundation/index.html) (CSS-Framework)
 
@@ -51,7 +52,7 @@ Along with cannabis strains, a selection of herbal home remedies are also recomm
 
 
 
-### Deployed URL's
+### Deployed URL's:
 <hr />
 
 [GitHub-Repository](https://github.com/dmitriso/THme)
