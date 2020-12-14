@@ -43,7 +43,7 @@ return Math.abs(age_dt.getUTCFullYear() - 1970);
 
 var age = calculate_age(new Date($('#years option:selected').text(), $('#months option:selected').text(),$('#days option:selected').text()));
 
-if (age < 21 || ''){
+if (age < 21 || $('#days option:selected').text() === ''){
     alert("Sorry, Must Be 21 or Older to Continue")
 }
 else{
