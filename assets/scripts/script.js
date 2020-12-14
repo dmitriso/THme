@@ -66,7 +66,14 @@ $(document).ready(function () {
   }// end of strainDetails()
 
   //*** Submit button event listener that kicks off API calls ***//
+  //-------------------------------------------------------------//
   $('#submitBtn').on('click', function () {
+
+    //If API server is not responding alert the user to technical difficulties
+    $.get('https://strainapi.evanbusse.com/test').fail(function(){
+      alert('We seem to be experiencing technical difficulties. Please try your search again later');
+      return;
+    });
 
     //Hide remedies to allow user time to make a selection
     $('#herbal').hide();
@@ -87,6 +94,8 @@ $(document).ready(function () {
       $userChoice = 'eye%20pressure'
     } else if ($userChoice === 'muscle spasms') {
       $userChoice = 'muscle%20spasms'
+    }else if ($userChoice === 'lack of appetite') {
+      $userChoice = 'lack%20of%20appetite'
     }
 
     //*** Strain API****//
@@ -136,7 +145,7 @@ $(document).ready(function () {
         { name: 'depression', id: 18 },
         { name: 'stress', id: 21 },
         { name: 'inflammation', id: 58 },
-        { name: 'lack of appetite', id: 60 },
+        { name: 'lack%20of%20appetite', id: 60 },
         { name: 'fatigue', id: 144 },
         { name: 'eye%20pressure', id: 157 }, //glaucoma 
         { name: 'headache', id: 165 },
