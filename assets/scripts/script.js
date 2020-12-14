@@ -273,7 +273,6 @@ $(document).ready(function () {
   // This function reveals the herbal remedies section when called
   function showInit() {
     $('#remedy-btn').val('show');
-    console.log('this shows the remedies');
     $('#herbal').show();
   }
 });
