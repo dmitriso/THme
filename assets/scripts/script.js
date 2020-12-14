@@ -256,8 +256,7 @@ $(document).ready(function () {
   // Toggle button function that hides and shows remedies if user chooses either
   $(function () {
     $('#remedy-btn').click(function () {
-      // if the play button value is 'play', call the play function
-      // otherwise call the pause function
+
       showInit();
     });
   });
