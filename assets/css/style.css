@@ -19,6 +19,7 @@ footer {
 .card {
   margin-left: auto;
   margin-right: auto;
+  border-radius: 25px !important;
 }
 
 .effects-flavor-col{
@@ -28,7 +29,6 @@ footer {
 .output{
   display: flex;
   flex-direction: row;
-  background-color:  #B3C8B1;
 }
 
 .list-descrip{
@@ -45,8 +45,9 @@ footer {
 .callout{
   margin-left: auto;
   margin-right: auto;
-  background-color: #C5FF9B;
   padding: 0;
+  background-color: #fff0 !important;
+  border: none !important;
 }
 
 .tag-line{
@@ -58,7 +59,7 @@ footer {
 }
 
 .age-ver{
-  height: 400px !important;
+  height: 415px !important;
   margin-top: 10px;
 }
 
@@ -106,10 +107,6 @@ input:checked~.switch-paddle{
     display: flex;
     flex-direction: column;
 }
-
-
-
-
 
 /* screen is mobile, goes to mobile width */
 @media only screen and (max-width: 300px){
