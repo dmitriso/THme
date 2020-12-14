@@ -2,9 +2,20 @@
   display: none;
 }
 
-.menu {
-  background-color: #C5FF9B !important;
+
+.navigation{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: white;
+}
+
 
 .card {
   margin-left: auto;
@@ -72,9 +83,19 @@ li{
 .menu{
   border: none;
 }
+
 input:checked~.switch-paddle{
   background-color: #5b724b;
 }
+
+#savedstrain{
+    width: 50%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+}
+
+
 
 /* screen is mobile, goes to mobile width */
 @media only screen and (max-width: 300px){
