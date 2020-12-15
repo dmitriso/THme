@@ -1,13 +1,12 @@
 # THme
 
 ## GreenLight Project-1
-<hr />
 <p>Team-Members:</p>
 <ul>
-<li>Nate King</li>
-<li>John Hauth</li>
-<li>Dmitri So</li>
-<li>Dale Jacobs</li>
+  <li>Nate King</li>
+  <li>John Hauth</li>
+  <li>Dmitri So</li>
+  <li>Dale Jacobs</li>
 </ul>
 
 
@@ -18,21 +17,18 @@
     + [HTML and CSS](#html-and-css)
     + [Javascript functionality](#javascript-functionality)
   * [Screenshots](#screenshots)
-  * [Deployed URLs](#deployed-urls)
   * [Technologies and Credits](#technologies-and-credits)
+  * [Deployed URLs](#deployed-urls)
   * [License](#license)
-<hr />
 
 
 ## Description
 
 ### User Story
-<hr />
 <p>“As someone with an ailment looking for relief, I want a website  that’ll give me recommendations for strains suited for my symptom. When I am presented with a list of recommended strains I can click on each of the names. When selected, I am presented with the flavor profiles and descriptions of of each strain. I am also presented with a list of holistic home remedies, to pair with my strains.”</p>
 
 
 ### Product
-<hr />
 <p>Warning we are not medical professionals! This app is not meant to treat medical illnesses.</p>
 
 <p>This app has been created between four full-stack developer students calling themselves GreenLight. Using the tools we've learned and/or self-taught, we've built this app to recommend medical cannabis strains for the user's ailments. Based on the user symptoms, certain medicinal cannabis strains are recommended. The recommendations for medical cannabis are selected and pulled from a server-side API (The Strain API).
@@ -40,7 +36,7 @@ Along with cannabis strains, a selection of herbal home remedies is also recomme
 </p>
 
 ### HTML and CSS
-When the user first enters the site, it is greeted with a prompt displaying what THme is about, a cannabis recommendation application. They then can scroll down to the age verification, where they can select their birthday. If no birthday is selected, it sends an alert again displaying that the user must be 21 or older to proceed. Next, the user is prompted with a card displaying that this application is strictly recommendations on cannabis strains and herbal remedies. Proceeding, the users are faced with cards in a cascading effect that displays the steps of the application. You select an ailment, a strain name, a strain description displays, and then below users can see the different effects, profiles, and herbal remedies based on their choices. We went with this layout for simplicity and logical reasoning on where certain cards are placed. The color pallet and background image is in inspiration to the cannabis industry and the medicine that it provides. The application displays an easy to use interface that every patient would be able to navigate through.
+When the user first enters the site, they are greeted with a prompt displaying what THme is about. A cannabis recommendation application. They then can scroll down to the age verification, where they can select their birthday. If no birthday is selected, it sends an alert again displaying that the user must be 21 or older to proceed. Next, the user is prompted with a card displaying that this application is strictly recommendations on cannabis strains and herbal remedies. Proceeding, the users are faced with cards in a cascading effect that displays the steps of the application. You select an ailment, a strain name, a strain description displays, and then below users can see the different effects, profiles, and herbal remedies based on their choices. We went with this layout for simplicity and logical reasoning on where certain cards are placed. The color pallet and background image is in inspiration to the cannabis industry and the medicine that it provides. The application displays an easy to use interface that every patient would be able to navigate through. The CSS framework used was Foundation.
 
 
 ### JavaScript Functionality
@@ -59,8 +55,6 @@ When a user originally loads the page, if any strains are saved in local storage
 Lastly, a "Clear Saved Strain History" button is on the screen for the user to clear out the list of saved strains in case the list gets too long or they just want to clean house.
 
 ## Screenshots
-
-<hr />
 
 ###### click to expand
 <details>
@@ -81,7 +75,6 @@ Lastly, a "Clear Saved Strain History" button is on the screen for the user to c
 <p></p>
 
 ## Technologies and Credits
-<hr />
 
 [Sass](https://sass-lang.com/guide) (CSS-Preprocessor)
 
@@ -97,7 +90,6 @@ Lastly, a "Clear Saved Strain History" button is on the screen for the user to c
 
 
 ## Deployed URLs
-<hr />
 
 [GitHub-Repository](https://github.com/dmitriso/THme)
 
@@ -105,7 +97,6 @@ Lastly, a "Clear Saved Strain History" button is on the screen for the user to c
 
 
 ## License
-<hr />
 MIT License
 Copyright (c) 2020 GreenLight
 Permission is hereby granted, free of charge, to any person obtaining a copy
