@@ -18,6 +18,7 @@
     + [HTML and CSS](#html-and-css)
     + [Javascript functionality](#javascript-functionality)
   * [Screenshots](#screenshots)
+  * [Deployed URLs](#deployed-urls)
   * [Technologies and Credits](#technologies-and-credits)
   * [License](#license)
 <hr />
